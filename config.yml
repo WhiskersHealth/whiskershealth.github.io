@@ -1,0 +1,36 @@
+
+backend:
+  name: github
+  repo: WhiskersHealth/whiskershealth.github.io
+  branch: main
+  token: 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
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+collections:
+  - name: "cats"
+    label: "Adoptable Cats"
+    folder: "cats"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Name"
+        name: "name"
+        widget: "string"
+      - label: "Description"
+        name: "description"
+        widget: "text"
+      - label: "Image"
+        name: "image"
+        widget: "image"
+  - name: "stories"
+    label: "Success Stories"
+    folder: "stories"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
