@@ -3,7 +3,6 @@ backend:
   name: github
   repo: WhiskersHealth/whiskershealth.github.io
   branch: main
-  token: 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
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 collections:
