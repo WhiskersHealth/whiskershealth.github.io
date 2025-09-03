@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whiskers Health Organisation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(253,230,233,1) 0%, rgba(255,255,255,1) 100%);
+        }
+        .paw-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 30C55 30 60 35 60 40C60 45 55 50 50 50C45 50 40 45 40 40C40 35 45 30 50 30' fill='%23f8d7da' opacity='0.4'/%3E%3C/svg%3E");
+        }
+    </style>
+    <style>
+        /* Flip card styles */
+        .card {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 340px;
+            height: 36rem;
+        }
+        /* Standardize team member image heights */
+        .card-front img {
+            height: 23.8rem;
+            object-fit: cover;
+            width: 100%;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-bottom: 2rem; /* Extra padding for text */
+        }
+        .card-front {
+            background: #f9fafb;
+        }
+        .card-back {
+            background: #f472b6;
+            color: #fff;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+    </style>
+    <style>
+                html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.max-w-7xl {
+    max-width: 1200px !important;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .card {
+        height: auto;
+        min-height: 32rem;
+        margin-bottom: 2rem;
+    }
+    .card-front img {
+        height: 18rem;
+        object-fit: cover;
+    }
+    .grid.md\:grid-cols-2.lg\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+    }
+    .px-4, .sm\:px-6, .lg\:px-8 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    #team .grid {
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+    </style>
+    
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="https://whiskershealth.org/_assets/media/b88c56ebf9060a2275cee7a808d48ba6.png" alt="Whiskers Health">
+                        <span class="ml-2 text-xl font-bold text-pink-600">Whiskers Health</span>
+                    </a>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#" class="text-pink-600 hover:text-pink-800 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-pink-600 px-3 py-2 text-sm font-medium">About</a>
+                    <a href="#services" class="text-gray-700 hover:text-pink-600 px-3 py-2 text-sm font-medium">What We Do</a>
+                    <a href="#team" class="text-gray-700 hover:text-pink-600 px-3 py-2 text-sm font-medium">Our Team</a>
+                    <a href="#contact" class="text-gray-700 hover:text-pink-600 px-3 py-2 text-sm font-medium">Contact</a>
+                    <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium">Donate</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-pink-600 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-pink-50 text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#about" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#services" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">What We Do</a>
+                <a href="#team" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Our Team</a>
+                <a href="#contact" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <a href="#" class="bg-pink-600 text-white block px-3 py-2 rounded-md text-base font-medium">Donate</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+            <div class="relative z-10 md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight mb-6">
+                        Where every <span class="text-pink-600">paw</span> matters<br>and every <span class="text-pink-600">tail</span> tells a story.
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Welcome to Whiskers Health Organisation
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#about" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-md text-lg font-medium">Learn More</a>
+                        <a href="#" class="border-2 border-pink-600 text-pink-600 hover:bg-pink-50 px-6 py-3 rounded-md text-lg font-medium">Donate Now</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <img src="https://whiskershealth.org/_assets/media/08cb700328fbc50c8cba36c0af7496b7.jpg" alt="Happy cat" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+            </div>
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-pink-200 opacity-20"></div>
+            <div class="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-pink-100 opacity-30"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-aos="fade-up">Pets change our lives.<br>We're here to change theirs.</h2>
+                <div class="w-20 h-1 bg-pink-600 mx-auto mb-6"></div>
+            </div>
+            <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                    <img src="https://whiskershealth.org/_assets/media/a86e5911d07b8284b52a7532dfab90ba.jpg" alt="Rescued cat" class="rounded-lg shadow-lg w-full h-auto">
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <p class="text-lg text-gray-600 mb-6">
+                        At Whiskers Health Organisation, we rescue and care for abandoned, injured, and neglected animals across the UK, giving them a second chance at a healthy, happy life.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8">
+                        With your kindness, we can transform their future, one paw at a time.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-pink-100 rounded-full p-4">
+                            <i data-feather="heart" class="text-pink-600 w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800">Our Mission</h3>
+                            <p class="text-gray-600">To provide love, care, and medical attention to animals in need.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50 paw-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-aos="fade-up">What do we do?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    When an animal is lost, scared, or suffering, we don't just step in — we wrap them in care, offering warmth, safety, and hope from the very first moment.
+                </p>
+                <div class="w-20 h-1 bg-pink-600 mx-auto mb-6" data-aos="fade-up" data-aos-delay="200"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+                    <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i data-feather="life-buoy" class="text-pink-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Rescue with Love</h3>
+                    <p class="text-gray-600 text-center">
+                        Our team responds to emergency calls and provides immediate care to animals in distress.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i data-feather="activity" class="text-pink-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Veterinary Care</h3>
+                    <p class="text-gray-600 text-center">
+                        From first check-ups to urgent treatments, we work closely with trusted local veterinary teams who help our animals heal and thrive.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i data-feather="home" class="text-pink-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Fostering and Adoption</h3>
+                    <p class="text-gray-600 text-center">
+                        Every animal deserves to feel what love is. Through kind-hearted foster families and thoughtful adoptions, we help them find the comfort of home.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-pink-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">Join the journey.<br>Be their hero.</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Whether you give, volunteer, or share your time, you can help us save lives. Every donation, every share, every moment you give brings hope to animals who need it most.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="#" class="bg-white text-pink-600 hover:bg-gray-100 px-8 py-3 rounded-md text-lg font-medium">Donate Now</a>
+                <a href="#" class="border-2 border-white text-white hover:bg-pink-700 px-8 py-3 rounded-md text-lg font-medium">Volunteer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-aos="fade-up">Meet the Hearts Behind Whiskers Health Organisation</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    They may not run board meetings (yet), but they inspire everything we do.
+                </p>
+                <div class="w-20 h-1 bg-pink-600 mx-auto mb-6" data-aos="fade-up" data-aos-delay="200"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                                                <div class="card bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+                                                    <div class="card-inner">
+                                                        <!-- Front Side -->
+                                                        <div class="card-front">
+                                                            <img src="https://whiskershealth.org/_assets/media/63da539e7f6e189cbbe1168ce070f754.jpg" alt="Phoebe" class="w-full object-cover">
+                                                            <div class="p-6 flex flex-col flex-1">
+                                                                <h3 class="text-xl font-bold text-gray-800 mb-1">Phoebe</h3>
+                                                                <p class="text-pink-600 font-medium mb-4">Chief of Naps & Grumbles</p>
+                                                                <p class="text-gray-600">Sleeps anywhere, anytime, and isn't afraid to voice her opinions.</p>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div class="card-back">
+                                                            <h3 class="text-xl font-bold mb-4">More About Phoebe</h3>
+                                                            <p class="text-gray-200">(Add more info here)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                <!-- Team Member 2 -->
+                                                <div class="card bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+                                                    <div class="card-inner">
+                                                        <!-- Front Side -->
+                                                        <div class="card-front">
+                                                            <img src="https://whiskershealth.org/_assets/media/a4d27e88b6cfbc1d9a3b3b2a75ce791a.jpg" alt="Chewie" class="w-full object-cover" style="object-position: center 10%;">
+                                                            <div class="p-6 flex flex-col flex-1">
+                                                                <h3 class="text-xl font-bold text-gray-800 mb-1">Chewie</h3>
+                                                                <p class="text-pink-600 font-medium mb-4">Purring HR Manager</p>
+                                                                <p class="text-gray-600">A cuddle loving gentle giant with the loudest purr in the house.</p>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div class="card-back">
+                                                            <h3 class="text-xl font-bold mb-4">More About Chewie</h3>
+                                                            <p class="text-gray-200">(Add more info here)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                <!-- Team Member 3 -->
+                                                <div class="card bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+                                                    <div class="card-inner">
+                                                        <!-- Front Side -->
+                                                        <div class="card-front">
+                                                            <img src="https://whiskershealth.org/_assets/media/8fbc701acf71ab6b41c2f449a9702653.jpg" alt="Kandi" class="w-full object-cover">
+                                                            <div class="p-6 flex flex-col flex-1">
+                                                                <h3 class="text-xl font-bold text-gray-800 mb-1">Kandi</h3>
+                                                                <p class="text-pink-600 font-medium mb-4">Director of TV Engagement</p>
+                                                                <p class="text-gray-600">Loves screen time almost as much as treats (especially if it's a bird on YouTube).</p>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div class="card-back">
+                                                            <h3 class="text-xl font-bold mb-4">More About Kandi</h3>
+                                                            <p class="text-gray-200">(Add more info here)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                <!-- Team Member 4 -->
+                                                <div class="card bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+                                                    <div class="card-inner">
+                                                        <!-- Front Side -->
+                                                        <div class="card-front">
+                                                            <img src="https://whiskershealth.org/_assets/media/2fcb2e8205fa8f23d5517ee6441418e4.jpg" alt="Benito" class="w-full h-[30rem] object-cover">
+                                                            <div class="p-6 flex flex-col flex-1">
+                                                                <h3 class="text-xl font-bold text-gray-800 mb-1">Benito</h3>
+                                                                <p class="text-pink-600 font-medium mb-4">Chief of Cuddles & Chaos</p>
+                                                                <p class="text-gray-600">Soft, snuggly, and goes absolutely wild when the sun goes down.</p>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div class="card-back">
+                                                            <h3 class="text-xl font-bold mb-4">More About Benito</h3>
+                                                            <p class="text-gray-200">(Add more info here)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                <!-- Team Member 5 -->
+                                                <div class="card bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+                                                    <div class="card-inner">
+                                                        <!-- Front Side -->
+                                                        <div class="card-front">
+                                                            <img src="https://whiskershealth.org/_assets/media/63f1da26f47465d56ad6ecd0d024a658.jpg" alt="Twitch" class="w-full h-[30rem] object-cover">
+                                                            <div class="p-6 flex flex-col flex-1">
+                                                                <h3 class="text-xl font-bold text-gray-800 mb-1">Twitch</h3>
+                                                                <p class="text-pink-600 font-medium mb-4">Head of Light Chasing & Sparkle Patrol</p>
+                                                                <p class="text-gray-600">Forever hunting reflections and mysterious beams on the wall.</p>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div class="card-back">
+                                                            <h3 class="text-xl font-bold mb-4">More About Twitch</h3>
+                                                            <p class="text-gray-200">(Add more info here)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                <!-- Team Member 6 -->
+                                                <div class="card bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+                                                    <div class="card-inner">
+                                                        <!-- Front Side -->
+                                                        <div class="card-front">
+                                                            <img src="https://whiskershealth.org/_assets/media/c33a1ec8236e3c29bcfd3ea5884724dd.jpg" alt="Scooby" class="w-full h-[30rem] object-cover">
+                                                            <div class="p-6 flex flex-col flex-1">
+                                                                <h3 class="text-xl font-bold text-gray-800 mb-1">Scooby</h3>
+                                                                <p class="text-pink-600 font-medium mb-4">Bug Control Specialist</p>
+                                                                <p class="text-gray-600">If it crawls or flies, he's on it, no questions asked.</p>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Back Side -->
+                                                        <div class="card-back">
+                                                            <h3 class="text-xl font-bold mb-4">More About Scooby</h3>
+                                                            <p class="text-gray-200">(Add more info here)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                    <img src="https://whiskershealth.org/_assets/media/649d4b5805ba447e6fe8f1fa49d5b777.png" alt="Our story" class="rounded-lg shadow-lg w-full h-auto">
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        They weren't just rescues, they became family. Each of our six cats came to us with their own story. Some were shy, some were sick, some just needed a place to feel safe.
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        Looking after them showed us how many animals out there need the same love and care. That's how Whiskers Health began, from a home full of paws, purrs, and purpose.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-aos="fade-up">Get in Touch</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    We'd love to hear from you! Whether you're looking to help, adopt, or just say hello, we're always here for fellow animal lovers.
+                </p>
+                <div class="w-20 h-1 bg-pink-600 mx-auto mb-6" data-aos="fade-up" data-aos-delay="200"></div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-gray-50 rounded-lg shadow-md p-8" data-aos="fade-up">
+                    <div class="flex flex-col md:flex-row md:space-x-8">
+                        <div class="md:w-1/2 mb-8 md:mb-0">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i data-feather="mail" class="text-pink-600 w-5 h-5 mt-1"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-gray-600">Email us at</p>
+                                        <a href="mailto:hello@whiskershealth.org" class="text-pink-600 font-medium">hello@whiskershealth.org</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i data-feather="phone" class="text-pink-600 w-5 h-5 mt-1"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-gray-600">Call us at</p>
+                                        <a href="tel:+1234567890" class="text-pink-600 font-medium">+1 234 567 890</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i data-feather="map-pin" class="text-pink-600 w-5 h-5 mt-1"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-gray-600">Find us at</p>
+                                        <p class="text-gray-800 font-medium">123 Pet Street, London, UK</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Send us a message</h3>
+                            <form>
+                                <div class="mb-4">
+                                    <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Name</label>
+                                    <input type="text" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
+                                    <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="message" class="block text-gray-700 text-sm font-medium mb-2">Message</label>
+                                    <textarea id="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"></textarea>
+                                </div>
+                                <button type="submit" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-md text-sm font-medium">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Guide Section -->
+    <section class="py-20 bg-pink-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-aos="fade-up">🐾 Emergency Preparedness Guide for Cats & Dogs</h2>
+                <div class="w-20 h-1 bg-pink-600 mx-auto mb-6" data-aos="fade-up" data-aos-delay="100"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md" data-aos="fade-right">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">🧰 Emergency Kit Essentials</h3>
+                    <p class="text-gray-600 mb-4">Have a grab-and-go pet emergency kit ready with:</p>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Sturdy pet carrier (one per animal)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Vet contact info and medical records</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Microchip number and ID tag copies</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Disposable gloves</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Clean towels or blankets</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Tweezers and blunt scissors</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Saline solution (for rinsing eyes or wounds)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Gauze, non-stick pads, vet wrap or bandages</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Digital thermometer (Dog normal: 38.3–39.2°C / Cat normal: 38–39.2°C)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Treats (for calming/coaxing)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Muzzle (dog only) or use a towel to wrap for safe handling</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>Tick remover tool</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-pink-600 w-4 h-4 mt-1 mr-2"></i>
+                            <span>List of emergency contacts and steps</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6">
+                        <a href="https://www.amazon.co.uk/Reliance-REL199-Relivet-First-Pets/dp/B007B1J3YU?ref_=ast_sto_dp" class="text-pink-600 hover:text-pink-700 font-medium inline-flex items-center">
+                            Shop Emergency Kit on Amazon
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md" data-aos="fade-left">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">🚨 Emergency Actions – Quick Reference</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">💉 Bleeding</h4>
+                            <p class="text-gray-600">Cats & Dogs: Apply firm pressure with gauze or a clean cloth. If from a limb, elevate if safe. Seek vet care if bleeding doesn't stop in 5–10 mins.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">🐾 Choking</h4>
+                            <p class="text-gray-600">Do not force open the mouth or reach down throat. If something is visible and safe to remove, try with tweezers. If breathing is compromised, collapse occurs or pawing at mouth persists: Go to emergency vet.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">🤕 Trauma (e.g. road accident, fall)</h4>
+                            <p class="text-gray-600">Keep animal calm, warm, and contained (carrier or blanket on flat board). Do not attempt to splint broken limbs. Cover wounds with gauze if possible. Urgent vet care needed, internal injuries may not be visible.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">🤢 Suspected Poisoning</h4>
+                            <p class="text-gray-600">Secure and bring any packaging/plant involved. Do not induce vomiting unless instructed by a vet. Call your vet or emergency vet and Animal PoisonLine (UK) <a href="tel:01202509000" class="text-pink-600">01202 509 000</a>.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">🌞 Heatstroke</h4>
+                            <p class="text-gray-600">Symptoms: excessive panting (dogs), drooling, confusion, collapse, red gums. Move to a shaded/cool area. Use cool (not ice cold) water on feet and belly. Offer water but don't force it. Urgent vet care required.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">Emergency Contacts (UK)</h4>
+                            <ul class="text-gray-600 space-y-2">
+                                <li>Chocolate Poisoning Calculator</li>
+                                <li>Find local Emergency clinic</li>
+                                <li>RSPCA Animal Emergency Line (cats, dogs, wildlife) <a href="tel:03001234999" class="text-pink-600">0300 1234 999</a> (24/7)</li>
+                                <li>Animal PoisonLine (UK only, dogs & cats) <a href="tel:01202509000" class="text-pink-600">01202 509 000</a></li>
+                            </ul>
+                        </div>
+                        <p class="text-gray-600 font-medium">🐾 When in doubt, call your vet or Animal PoisonLine. Don't delay. Fast action saves lives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Contacts Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Emergency Contacts (UK)</h3>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">RSPCA Emergency Line</h4>
+                    <p class="text-gray-600 mb-2">For cats, dogs & wildlife</p>
+                    <a href="tel:03001234999" class="text-pink-600 hover:text-pink-700 font-medium">0300 1234 999</a>
+                    <p class="text-sm text-gray-500 mt-2">(24/7 service)</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Animal PoisonLine</h4>
+                    <p class="text-gray-600 mb-2">For dogs & cats</p>
+                    <a href="tel:01202509000" class="text-pink-600 hover:text-pink-700 font-medium">01202 509 000</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h4 class="text-lg font-semibold mb-4">Find Your Nearest Emergency Clinic</h4>
+                    <a href="#" class="text-pink-600 hover:text-pink-700 font-medium inline-flex items-center">
+                        Search Now
+                        <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="flex items-center">
+                        <img class="h-8 w-auto" src="https://whiskershealth.org/_assets/media/b88c56ebf9060a2275cee7a808d48ba6.png" alt="Whiskers Health">
+                        <span class="ml-2 text-xl font-bold text-white">Whiskers Health</span>
+                    </a>
+                    <p class="mt-4 text-gray-400">
+                        Where every paw matters and every tail tells a story.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white">Our Services</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-white">Meet the Team</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Get Involved</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Donate</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Volunteer</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Foster</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Adopt</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Partner With Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="youtube" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">
+                        Subscribe to our newsletter for updates and stories.
+                    </p>
+                    <div class="mt-4 flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
+                        <button class="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-r-md">
+                            <i data-feather="send" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © 2023 Whiskers Health Organisation. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                    <a href="cookie-policy.html" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                feather.replace();
+            } else {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Initialize animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Replace all feather icons
+        feather.replace();
+    </script>
+</body>
+</html>
