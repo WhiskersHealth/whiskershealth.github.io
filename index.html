@@ -122,8 +122,8 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <a href="#" class="flex-shrink-0 flex items-center">
-                        <img class="h-8 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health">
-                        <span class="ml-2 text-xl font-bold text-pink-600">Whiskers Health</span>
+                        <img class="h-8 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health Organisation">
+                        <span class="ml-2 text-xl font-bold text-pink-600">Whiskers Health Organisation</span>
                     </a>
                 </div>
                 <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
@@ -132,6 +132,7 @@
                     <a href="#services" class="text-gray-700 hover:text-pink-600 px-3 py-2 text-sm font-medium">What We Do</a>
                     <a href="#team" class="text-gray-700 hover:text-pink-600 px-3 py-2 text-sm font-medium">Our Team</a>
                     <a href="#contact" class="text-gray-700 hover:text-pink-600 px-3 py-2 text-sm font-medium">Contact</a>
+                    <a href="adopt.html" class="text-gray-700 hover:text-pink-600 px-3 py-2 text-sm font-medium">Adopt</a>
                     <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium">Donate</a>
                 </div>
                 <div class="-mr-2 flex items-center md:hidden">
@@ -150,7 +151,8 @@
                 <a href="#services" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">What We Do</a>
                 <a href="#team" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Our Team</a>
                 <a href="#contact" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
-                <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 text-white block px-3 py-2 rounded-md text-base font-medium">Donate</a>
+                <a href="adopt.html" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Adopt</a>
+                <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white block px-3 py-2 rounded-md text-base font-medium">Donate</a>
             </div>
         </div>
     </nav>
@@ -459,18 +461,19 @@
                         </div>
                         <div class="md:w-1/2">
                             <h3 class="text-xl font-semibold text-gray-800 mb-4">Send us a message</h3>
-                            <form>
+                            <form action="https://api.web3forms.com/submit" method="POST">
+                                <input type="hidden" name="access_key" value="0fb109d2-3f84-4523-923b-aaf1aece419a">
                                 <div class="mb-4">
                                     <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Name</label>
-                                    <input type="text" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                                    <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
                                 </div>
                                 <div class="mb-4">
                                     <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
-                                    <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                                    <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
                                 </div>
                                 <div class="mb-4">
                                     <label for="message" class="block text-gray-700 text-sm font-medium mb-2">Message</label>
-                                    <textarea id="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"></textarea>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"></textarea>
                                 </div>
                                 <button type="submit" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-md text-sm font-medium">Send Message</button>
                             </form>
@@ -625,8 +628,12 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <a href="#" class="flex items-center">
-                        <img class="h-8 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_W_Transparent.png" alt="Whiskers Health">
-                        <span class="ml-2 text-xl font-bold text-white">Whiskers Health</span>
+                        <img class="h-20 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_W_Transparent.png" alt="Whiskers Health Organisation">
+                        <span class="ml-2 text-xl font-bold text-white block">
+                            Whiskers<br>
+                            Health<br>
+                            Organisation
+                        </span>
                     </a>
                     <p class="mt-4 text-gray-400">
                         Where every paw matters and every tail tells a story.
@@ -671,17 +678,19 @@
                     <p class="text-gray-400">
                         Subscribe to our newsletter for updates and stories.
                     </p>
-                    <div class="mt-4 flex">
-                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
-                        <button class="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-r-md">
+                    <form action="https://a7e01b85.sibforms.com/serve/MUIFANP6n1EkwAKLOji4w-ZtgDEL42z2LNnSR6dwxHtUuaDgfUDibcfnpCIkhArHdT_DfxgnQwGGhwYD9xRisHZ2Tu2HHky8gesyg9f3jMzjZUJ6w-FVA_C9BEtBgmJC9kzuDkWpMSDqzlk_Ar4iR5nWnZhV6ciybDQr9ItxtpNBTMXoGTphVqs7FF84Fq4CZbty2dRek3MktVWF" method="POST" class="mt-4 flex">
+                        <input type="email" name="EMAIL" placeholder="Your email" required class="px-4 py-2 rounded-l-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
+                        <input type="hidden" name="locale" value="en">
+                        <input type="hidden" name="html_type" value="simple">
+                        <button type="submit" class="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-r-md">
                             <i data-feather="send" class="w-4 h-4"></i>
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-400 text-sm">
-                    © 2023 Whiskers Health Organisation. All rights reserved.
+                    © 2025 Whiskers Health Organisation. All rights reserved. Registered Charity in England & Wales (No. 1212966)
                 </p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
                     <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
@@ -694,13 +703,28 @@
 
     <script>
         // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', function() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
                 feather.replace();
             } else {
-                menu.classList.add('hidden');
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Hide mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Hide mobile menu on scroll
+        window.addEventListener('scroll', function() {
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
             }
         });
 
@@ -711,7 +735,7 @@
             once: true
         });
 
-        // Replace all feather iconss
+        // Replace all feather icons
         feather.replace();
     </script>
 </body>
