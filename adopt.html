@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     </head>
-    <body class="bg-white text-gray-800 relative">
+    <body class="bg-white text-gray-800 relative" style="background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://cdn.whiskershealth.org/whiskershealth/web/paws.png'); background-repeat: repeat; background-size: 220px 220px;">
     <!-- Navigation copied from index.html -->
         <nav class="bg-white shadow-sm sticky top-0 z-50">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,21 +41,7 @@
                 </div>
             </div>
         </nav>
-        <!-- Faded paw prints background -->
-        <div class="absolute inset-0 pointer-events-none z-0">
-            <div class="w-full h-full flex flex-wrap opacity-10">
-                <img src="https://cdn.whiskershealth.org/whiskershealth/web/paw_fade.png" alt="paw" class="w-32 h-32 m-8" style="animation: fadePaw 12s infinite alternate;">
-                <img src="https://cdn.whiskershealth.org/whiskershealth/web/paw_fade.png" alt="paw" class="w-24 h-24 m-12" style="animation: fadePaw 10s infinite alternate-reverse;">
-                <img src="https://cdn.whiskershealth.org/whiskershealth/web/paw_fade.png" alt="paw" class="w-40 h-40 m-16" style="animation: fadePaw 14s infinite alternate;">
-                <img src="https://cdn.whiskershealth.org/whiskershealth/web/paw_fade.png" alt="paw" class="w-28 h-28 m-20" style="animation: fadePaw 11s infinite alternate-reverse;">
-            </div>
-        </div>
-        <style>
-        @keyframes fadePaw {
-            0% { opacity: 0.08; }
-            100% { opacity: 0.18; }
-        }
-        </style>
+    <!-- Paw print pattern now repeats across the whole page using CSS background -->
         <div class="container mx-auto px-4 py-12 relative z-10">
             <!-- Removed duplicate Donate and Back to Home buttons -->
             <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-pink-600 drop-shadow-lg tracking-tight">Cats for Adoption</h1>
