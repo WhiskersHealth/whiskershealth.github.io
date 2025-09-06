@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apply to Adopt | Whiskers Health Organisation</title>
+  <meta name="description" content="Whiskers Health cat adoption application. A friendly, step-by-step form to help us make the best match." />
+  <link rel="icon" type="image/png" href="https://whiskershealth.org/_assets/media/95ff71e8cc598e09954894b7da45ca9c.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <style>body{background-image:linear-gradient(rgba(255,255,255,.96),rgba(255,255,255,.96)),url('https://cdn.whiskershealth.org/whiskershealth/web/paws.png');background-repeat:repeat;background-size:220px 220px}  /* Make text boxes visibly stronger */
+  #adoptionForm input[type="text"],
+  #adoptionForm input[type="email"],
+  #adoptionForm input[type="tel"],
+  #adoptionForm textarea,
+  #adoptionForm select {
+    border-width: 2px;           /* thicker border */
+    border-color: #d1d5db;       /* gray-300 */
+    background: #ffffff;         /* solid white */
+  }
+  #adoptionForm input::placeholder,
+  #adoptionForm textarea::placeholder { color:#9ca3af; /* gray-400 */ }
+</style>
+</head>
+<body class="text-gray-800">
+  <nav class="bg-white/90 backdrop-blur sticky top-0 z-50 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <img class="h-8" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health" />
+        <span class="font-bold text-pink-600">Whiskers Health Organisation</span>
+      </a>
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="index.html" class="text-sm text-pink-600 hover:text-pink-700">Home</a>
+        <a href="adopt.html" class="text-sm text-pink-600 hover:text-pink-700 flex items-center gap-2"><i data-feather="heart" class="w-4 h-4"></i> Adopt</a>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white px-3 py-2 rounded-md text-sm flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a>
+      </div>
+      <button id="mobileMenuBtn" class="sm:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-pink-600 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+        <i data-feather="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden sm:hidden px-4 pb-3 space-y-1">
+      <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium bg-pink-50 text-pink-600">Home</a>
+      <a href="adopt.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-pink-50 hover:text-pink-600 flex items-center gap-2"><i data-feather="heart" class="w-4 h-4"></i> Adopt</a>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="block px-3 py-2 rounded-md text-base font-medium bg-pink-600 text-white hover:bg-pink-700 flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+    <!-- Top navigation links removed -->
+    <header class="mb-8">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-pink-600 tracking-tight">Apply to adopt</h1>
+      <p class="text-gray-700 mt-2 max-w-3xl">These questions help us make the best match for both you and the cat. There are 7 short steps. You can save and come back later on this device.</p>
+    </header>
+
+    <!-- Progress -->
+    <div class="mb-6">
+      <div class="flex justify-between items-center text-sm text-gray-600 mb-1">
+        <span id="step-label">Step 1 of 7 • Your details</span>
+        <span id="progress-percent">0%</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+        <div id="progress-bar" class="h-2 bg-pink-600 rounded-full w-0"></div>
+      </div>
+    </div>
+
+    <!-- Form Card -->
+    <div class="bg-white rounded-2xl shadow-xl border border-pink-100 overflow-hidden">
+      <form id="adoptionForm" class="p-6 md:p-8">
+        <!-- hidden honeypot -->
+        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" />
+
+        <!-- Step 0: Cat preference -->
+        <section class="step" data-title="Cat preference">
+          <h2 class="text-xl font-semibold text-pink-600 mb-4">Cat preference</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium">Which cat are you interested in?</label>
+              <input id="interested_cat" name="interested_cat" type="text" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" placeholder="e.g., Milo" />
+              <label class="inline-flex items-center gap-2 mt-3 text-sm text-gray-700"><input id="open_any" type="checkbox" class="rounded text-pink-600" />I’m open to any suitable match</label>
+            </div>
+            <div>
+              <label class="block text-sm font-medium">What kind of cat suits you?</label>
+              <select name="preferences" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500">
+                <option>No strong preference</option>
+                <option>Calm and cuddly</option>
+                <option>Playful and active</option>
+                <option>Good with children</option>
+                <option>Good with other pets</option>
+                <option>Senior cat</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 1: Your details -->
+        <section class="step hidden" data-title="Your details">
+          <h2 class="text-xl font-semibold text-pink-600 mb-4">Section 1: Your details</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="block text-sm font-medium">Full name <span class="text-pink-600">*</span></span>
+              <input required name="full_name" type="text" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" />
+            </label>
+            <label class="block">
+              <span class="block text-sm font-medium">Email <span class="text-pink-600">*</span></span>
+              <input required name="email" type="email" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" />
+            </label>
+            <label class="block">
+              <span class="block text-sm font-medium">Phone <span class="text-pink-600">*</span></span>
+              <input required name="phone" type="tel" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" />
+            </label>
+            <label class="block">
+              <span class="block text-sm font-medium">Preferred way to be contacted</span>
+              <select name="preferred_contact" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option>Email</option><option>Phone</option><option>Text message</option></select>
+            </label>
+            <label class="block md:col-span-2">
+              <span class="block text-sm font-medium">Address</span>
+              <input name="address" type="text" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" />
+            </label>
+            <label class="block">
+              <span class="block text-sm font-medium">Postcode <span class="text-pink-600">*</span></span>
+              <input required name="postcode" type="text" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" />
+            </label>
+          </div>
+        </section>
+
+        <!-- Step 2: Household information -->
+        <section class="step hidden" data-title="Household information">
+          <h2 class="text-xl font-semibold text-pink-600 mb-4">Section 2: Household information</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block md:col-span-2">
+              <span class="block text-sm font-medium">Who lives in your household? (Adults, children, ages)</span>
+              <textarea name="household" rows="2" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"></textarea>
+            </label>
+            <label class="block">
+              <span class="block text-sm font-medium">Does anyone have cat allergies?</span>
+              <select name="allergies" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option>No</option><option>Yes</option><option>Not sure</option></select>
+            </label>
+            <label class="block">
+              <span class="block text-sm font-medium">Do you own or rent your home?</span>
+              <select id="housing" name="housing" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option>Own</option><option>Rent (permission confirmed)</option><option>Rent (permission pending)</option><option>Other</option></select>
+            </label>
+            <div id="permNote" class="hidden md:col-span-2 text-sm text-amber-700 bg-amber-50 border border-amber-100 rounded-xl p-3">If renting, we may ask for confirmation that pets are allowed.</div>
+            <label class="block md:col-span-2">
+              <span class="block text-sm font-medium">Do you have a garden/outdoor space? If yes, is it safe/secure?</span>
+              <textarea name="garden" rows="2" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" placeholder="e.g., enclosed, quiet road, balcony only"></textarea>
+            </label>
+          </div>
+        </section>
+
+        <!-- Step 3: Experience with pets -->
+        <section class="step hidden" data-title="Experience with pets">
+          <h2 class="text-xl font-semibold text-pink-600 mb-4">Section 3: Your experience with pets</h2>
+          <div class="space-y-4">
+            <label class="block"><span class="block text-sm font-medium">Have you owned cats before? If yes, tell us a little about them.</span><textarea name="past_cats" rows="2" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"></textarea></label>
+            <label class="block"><span class="block text-sm font-medium">Do you currently have any other pets? (Species, ages, temperament)</span><textarea name="current_pets" rows="2" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"></textarea></label>
+            <label class="block"><span class="block text-sm font-medium">How do you think your current pets might react to a new cat?</span><textarea name="pets_reaction" rows="2" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"></textarea></label>
+          </div>
+        </section>
+
+        <!-- Step 4: Lifestyle & care -->
+        <section class="step hidden" data-title="Lifestyle & care">
+          <h2 class="text-xl font-semibold text-pink-600 mb-4">Section 4: Lifestyle & care</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block"><span class="block text-sm font-medium">How long are you typically away from home each day?</span><select name="time_away" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option>Less than 4 hours</option><option>4–6 hours</option><option>6–8 hours</option><option>More than 8 hours</option></select></label>
+            <label class="block"><span class="block text-sm font-medium">Where would the cat stay when you’re out or at night?</span><input name="stay_where" type="text" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" placeholder="e.g., free roam, spare room" /></label>
+            <label class="block"><span class="block text-sm font-medium">Are you looking for an indoor-only or indoor/outdoor cat?</span><select name="indoor_outdoor" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option>Indoor only</option><option>Indoor/outdoor</option><option>Either</option></select></label>
+            <label class="block"><span class="block text-sm font-medium">Are you open to adopting a cat with special needs?</span><select id="special_needs" name="special_needs" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option>Yes</option><option>No</option><option>Maybe</option></select></label>
+            <label id="needsDetailWrap" class="block md:col-span-2 hidden"><span class="block text-sm font-medium">If yes/maybe, tell us anything you’re comfortable with (e.g., medication routines, mobility aids)</span><textarea name="special_needs_notes" rows="2" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"></textarea></label>
+          </div>
+        </section>
+
+        <!-- Step 5: Matching & preferences -->
+        <section class="step hidden" data-title="Matching & preferences">
+          <h2 class="text-xl font-semibold text-pink-600 mb-4">Section 5: Matching & preferences</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block md:col-span-2"><span class="block text-sm font-medium">What kind of cat are you hoping to adopt? (Age, temperament, personality)</span><textarea name="cat_hoping_for" rows="2" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"></textarea></label>
+            <label class="block"><span class="block text-sm font-medium">Are you open to siblings/pairs?</span><select name="open_pairs" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option>Yes</option><option>No</option><option>Maybe</option></select></label>
+            <label class="block"><span class="block text-sm font-medium">Would you consider a senior cat or one with extra needs?</span><select name="senior_extra" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option>Yes</option><option>No</option><option>Maybe</option></select></label>
+          </div>
+        </section>
+
+        <!-- Step 6: Commitment -->
+        <section class="step hidden" data-title="Commitment">
+          <h2 class="text-xl font-semibold text-pink-600 mb-4">Section 6: Commitment</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block"><span class="block text-sm font-medium">Are you prepared for the costs of cat ownership?</span><select name="prepared_costs" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option>Yes</option><option>No</option><option>Not sure</option></select></label>
+            <label class="block"><span class="block text-sm font-medium">What arrangements would you make if you go on holiday?</span><input name="holiday_arrangements" type="text" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" placeholder="e.g., pet sitter, cattery" /></label>
+            <label class="block md:col-span-2"><span class="block text-sm font-medium">Have you ever had to rehome a pet before? (If yes, please explain)</span><textarea name="rehome_history" rows="2" class="mt-1 w-full rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"></textarea></label>
+          </div>
+        </section>
+
+        <!-- Step 7: Agreement + GDPR -->
+        <section class="step hidden" data-title="Agreement">
+          <h2 class="text-xl font-semibold text-pink-600 mb-4">Section 7: Agreement</h2>
+          <div class="space-y-3 text-sm text-gray-800">
+            <label class="flex items-start gap-3"><input type="checkbox" name="agree_home_visit"$1 required"mt-1 rounded text-pink-600" /> <span>Do you agree to a home visit (in person or virtual)?</span></label>
+            <label class="flex items-start gap-3"><input type="checkbox" name="agree_return"$1 required"mt-1 rounded text-pink-600" /> <span>Do you agree not to sell or pass on the cat but return them to Whiskers Health if needed?</span></label>
+            <label class="flex items-start gap-3"><input type="checkbox" name="agree_understand"$1 required"mt-1 rounded text-pink-600" /> <span>Do you understand that completing this form does not guarantee adoption?</span></label>
+          </div>
+          <div class="bg-pink-50 border border-pink-100 rounded-xl p-4 text-sm text-gray-700 mt-4">By applying, you confirm you’re prepared for the responsibilities and costs of cat ownership. If things don’t work out, you agree to return the cat to Whiskers Health Organisation. We may arrange a home visit before adoption.</div>
+          <label class="flex items-start gap-3 mt-4 text-sm">
+            <input required id="consent" name="consent" type="checkbox" class="mt-1 rounded text-pink-600" />
+            <span>I consent to Whiskers Health Organisation processing my personal data for this application and contacting me about it. <a href="/privacy-policy.html" class="underline text-pink-600">Privacy Policy</a>. <span class="text-pink-600">*</span></span>
+          </label>
+        </section>
+
+        <!-- Review/Submit -->
+        <section class="step hidden" data-title="Review & submit">
+          <h2 class="text-xl font-semibold text-pink-600 mb-4">Review & submit</h2>
+          <p class="text-gray-700 mb-4">Please review your answers below. You can go back to edit any section.</p>
+          <div id="review" class="bg-gray-50 rounded-xl p-4 text-sm space-y-2 border"></div>
+          <div class="mt-4 text-xs text-gray-500">We’ll include the page you came from and your device time with the submission.</div>
+        </section>
+
+        <!-- Controls -->
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <button type="button" id="prevBtn" class="px-4 py-2 rounded-xl border border-gray-300 hover:bg-gray-50 disabled:opacity-50">Back</button>
+          <button type="button" id="nextBtn" class="px-4 py-2 rounded-xl bg-pink-600 text-white hover:bg-pink-700">Next</button>
+          <button type="submit" id="submitBtn" class="hidden px-5 py-2 rounded-xl bg-pink-600 text-white hover:bg-pink-700">Submit application</button>
+          <button type="button" id="saveBtn" class="ml-auto text-sm text-gray-600 hover:text-gray-800">Save progress</button>
+          <button type="button" id="clearBtn" class="text-sm text-gray-600 hover:text-gray-800">Clear</button>
+        </div>
+      </form>
+
+      <div id="successPanel" class="hidden p-10 text-center">
+        <img src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health" class="h-12 mx-auto mb-4" />
+        <h3 class="text-2xl font-semibold text-pink-600 mb-2">Thank you for applying! 🐾</h3>
+        <p class="text-gray-700">We’ve received your application. A volunteer will be in touch soon. If you need us, email <a class="text-pink-600 underline" href="mailto:adoptions@whiskershealth.org">adoptions@whiskershealth.org</a>.</p>
+        <div class="mt-6"><a href="adopt.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md">Back to Adopt</a></div>
+      </div>
+    </div>
+
+    <p class="mt-6 text-xs text-gray-500">Registered Charity in England & Wales (No. 1212966)</p>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <a href="#" class="flex items-center">
+            <img class="h-20 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_W_Transparent.png" alt="Whiskers Health Organisation">
+            <span class="ml-2 text-xl font-bold text-white block">
+              Whiskers<br>
+              Health<br>
+              Organisation
+            </span>
+          </a>
+          <p class="mt-4 text-gray-400">
+            Where every paw matters and every tail tells a story.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white">About Us</a></li>
+            <li><a href="#services" class="text-gray-400 hover:text-white">Our Services</a></li>
+            <li><a href="#team" class="text-gray-400 hover:text-white">Meet the Team</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Get Involved</h3>
+          <ul class="space-y-2">
+            <li><a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="text-gray-400 hover:text-white">Donate</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Volunteer</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Foster</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Adopt</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Partner With Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+          <div class="flex space-x-4 mb-4">
+            <a href="https://facebook.com/whiskershealth" class="text-gray-400 hover:text-white" aria-label="Facebook" target="_blank" rel="noopener">
+              <i data-feather="facebook" class="w-5 h-5"></i>
+            </a>
+            <a href="https://twitter.com/whiskershealth" class="text-gray-400 hover:text-white" aria-label="Twitter" target="_blank" rel="noopener">
+              <i data-feather="twitter" class="w-5 h-5"></i>
+            </a>
+            <a href="https://instagram.com/whiskershealth" class="text-gray-400 hover:text-white" aria-label="Instagram" target="_blank" rel="noopener">
+              <i data-feather="instagram" class="w-5 h-5"></i>
+            </a>
+            <a href="https://youtube.com/@whiskershealth" class="text-gray-400 hover:text-white" aria-label="YouTube" target="_blank" rel="noopener">
+              <i data-feather="youtube" class="w-5 h-5"></i>
+            </a>
+            <a href="https://linkedin.com/company/whiskershealth" class="text-gray-400 hover:text-white" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <i data-feather="linkedin" class="w-5 h-5"></i>
+            </a>
+          </div>
+          <p class="text-gray-400">
+            Subscribe to our newsletter for updates and stories.
+          </p>
+          <form action="https://a7e01b85.sibforms.com/serve/MUIFAPhrEDQ6n-IWDYKD_kz3QJs8lN5aJGjagBRzomxgzHb3v0hTD5vTwx9qp4er87U6JmFbYQK6JDp6EmIkIzT0l5fnNWnvE77t-ViO7ZF55TTuH7ZoLztxloy63I1KyryPjQgzfw-hoUeMEo3x3RV-UYZT5eKM2HgDL0TRjL1pGXWF7zyL-XRhC7jQcT2jSKcYKawz1sgc4YOb" method="POST" class="mt-4 flex">
+            <input type="email" name="EMAIL" placeholder="Your email" required class="px-4 py-2 rounded-l-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
+            <input type="hidden" name="locale" value="en">
+            <input type="hidden" name="html_type" value="simple">
+            <button type="submit" class="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-r-md">
+              <i data-feather="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">
+          © 2025 Whiskers Health Organisation. All rights reserved. Registered Charity in England & Wales (No. 1212966)
+        </p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+          <a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+          <a href="cookie-policy.html" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </main>
+
+  <script>
+    feather.replace();
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click',()=> mobileMenu.classList.toggle('hidden'));
+    }
+
+    // ---------- Config ----------
+    const WEB3_ENDPOINT = "https://api.web3forms.com/submit"; // Web3Forms endpoint
+    const WEB3_ACCESS_KEY = "c275303c-d9db-4a5b-9c09-2d2be15d0161"; // ← paste your Web3Forms access key here
+    const STEPS = Array.from(document.querySelectorAll('.step'));
+    let current = 0; // index within STEPS
+
+    const form = document.getElementById('adoptionForm');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const reviewBox = document.getElementById('review');
+    const progressBar = document.getElementById('progress-bar');
+    const percentLbl = document.getElementById('progress-percent');
+    const stepLbl = document.getElementById('step-label');
+    const successPanel = document.getElementById('successPanel');
+
+    // Prefill cat from ?cat=
+    const params = new URLSearchParams(location.search);
+    const catParam = params.get('cat');
+    if (catParam) document.getElementById('interested_cat').value = catParam;
+
+    // Open to any
+    const openAny = document.getElementById('open_any');
+    openAny.addEventListener('change', () => {
+      const fld = document.getElementById('interested_cat');
+      if (openAny.checked){ fld.value = 'Any suitable match'; fld.readOnly = true; }
+      else { if (fld.value === 'Any suitable match') fld.value = ''; fld.readOnly = false; }
+    });
+
+    // Conditional UI
+    const housingSel = document.getElementById('housing');
+    const permNote = document.getElementById('permNote');
+    const needsSel = document.getElementById('special_needs');
+    const needsWrap = document.getElementById('needsDetailWrap');
+    function refreshConditionals(){
+      permNote.classList.toggle('hidden', !housingSel.value.startsWith('Rent'));
+      needsWrap.classList.toggle('hidden', !(needsSel.value === 'Yes' || needsSel.value === 'Maybe'));
+    }
+    housingSel.addEventListener('change', refreshConditionals);
+    needsSel.addEventListener('change', refreshConditionals);
+    refreshConditionals();
+
+    // Navigation
+    function showStep(i){
+      STEPS.forEach((s,idx)=>s.classList.toggle('hidden', idx!==i));
+      prevBtn.disabled = i===0;
+      nextBtn.classList.toggle('hidden', i>=STEPS.length-1);
+      submitBtn.classList.toggle('hidden', i<STEPS.length-1);
+      const pct = Math.round((i)/(STEPS.length-1)*100);
+      progressBar.style.width = pct+'%';
+      percentLbl.textContent = pct+'%';
+      const label = STEPS[i].dataset.title || `Step ${i+1}`;
+      stepLbl.textContent = `Step ${Math.min(i+1,STEPS.length)} of ${STEPS.length} • ${label}`;
+      current = i;
+      if (i===STEPS.length-1) buildReview();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function validateStep(i){
+      // Validate only visible step fields
+      let ok = true;
+      const step = STEPS[i];
+      const required = step.querySelectorAll('[required]');
+      required.forEach(input => {
+        if (input.type === 'checkbox'){
+          const valid = input.checked;
+          if (!valid) { ok=false; input.classList.add('ring-2','ring-pink-400'); }
+          else { input.classList.remove('ring-2','ring-pink-400'); }
+        } else {
+          const val = (input.value || '').toString().trim();
+          if (!val) { ok=false; input.classList.add('ring-2','ring-pink-400'); }
+          else { input.classList.remove('ring-2','ring-pink-400'); }
+        }
+      });
+      return ok;
+    }
+
+    nextBtn.addEventListener('click', ()=>{ if (validateStep(current)) showStep(current+1); });
+    prevBtn.addEventListener('click', ()=> showStep(current-1));
+
+    // Build review
+    function buildReview(){
+      const data = Object.fromEntries(new FormData(form).entries());
+      const entries = Object.entries(data).filter(([k]) => k!== 'website');
+      reviewBox.innerHTML = entries.map(([k,v])=>`<div><span class='font-medium'>${niceLabel(k)}:</span> ${escapeHtml(v)}</div>`).join('');
+    }
+
+    function niceLabel(k){
+      return k.replace(/_/g,' ').replace(/\b\w/g, c=>c.toUpperCase());
+    }
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m])); }
+
+    // Save/restore
+    const STORAGE_KEY = 'whiskers_adoption_draft_v1';
+    function saveDraft(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(Object.fromEntries(new FormData(form).entries()))); }
+    function loadDraft(){
+      const raw = localStorage.getItem(STORAGE_KEY); if (!raw) return;
+      try{ const data = JSON.parse(raw); for (const [k,v] of Object.entries(data)){ const el = form.elements[k]; if (!el) continue; if (el.type==='checkbox') el.checked = v===true || v==='on'; else el.value = v; } refreshConditionals(); }
+      catch(e){}
+    }
+    saveBtn.addEventListener('click', ()=>{ saveDraft(); saveBtn.textContent='Saved'; setTimeout(()=>saveBtn.textContent='Save progress',1000); });
+    clearBtn.addEventListener('click', ()=>{ localStorage.removeItem(STORAGE_KEY); form.reset(); refreshConditionals(); });
+    loadDraft();
+
+    // Submit
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      if (form.website && form.website.value) return; // honeypot
+      submitBtn.disabled = true; submitBtn.textContent='Submitting…';
+
+      // helpful metadata
+      const page = document.referrer || 'Direct';
+      const timestamp = new Date().toISOString();
+
+      // Build FormData for Web3Forms (multipart/form-data)
+      const fd = new FormData(form);
+      const cat = (form.elements['interested_cat']?.value || '').trim();
+      fd.append('access_key', WEB3_ACCESS_KEY);
+      fd.append('subject', cat ? `New Cat Adoption Application — ${cat}` : 'New Cat Adoption Application');
+      fd.append('from_name', 'Whiskers Health Website');
+      fd.append('page', page);
+      fd.append('timestamp', timestamp);
+      // Optional spam field recognized by Web3Forms
+      fd.append('botcheck', form.website ? form.website.value : '');
+
+      try{
+        const res = await fetch(WEB3_ENDPOINT, { method:'POST', body: fd });
+        const data = await res.json();
+        if (res.ok && data.success){
+          localStorage.removeItem(STORAGE_KEY);
+          document.querySelector('form').classList.add('hidden');
+          successPanel.classList.remove('hidden');
+        } else {
+          alert('There was a problem sending your application. Please email adoptions@whiskershealth.org.');
+        }
+      } catch(err){
+        alert('Network error sending your application. Please email adoptions@whiskershealth.org.');
+      } finally { submitBtn.disabled=false; submitBtn.textContent='Submit application'; }
+    });
+
+    // Init first step
+    showStep(0);
+  </script>
+</body>
+</html>

@@ -1,209 +1,313 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cats for Adoption | Whiskers Health Organisation</title>
-        <link rel="icon" type="image/png" href="https://whiskershealth.org/_assets/media/95ff71e8cc598e09954894b7da45ca9c.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    </head>
-    <body class="bg-white text-gray-800 relative" style="background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://cdn.whiskershealth.org/whiskershealth/web/paws.png'); background-repeat: repeat; background-size: 220px 220px;">
-    <!-- Navigation copied from index.html -->
-        <nav class="bg-white shadow-sm sticky top-0 z-50">
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div class="flex justify-between h-16 items-center">
-                            <div class="flex items-center">
-                                <a href="index.html" class="flex-shrink-0 flex items-center">
-                                    <img class="h-8 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health Organisation">
-                                    <span class="ml-2 text-xl font-bold text-pink-600">Whiskers Health Organisation</span>
-                                </a>
-                            </div>
-                            <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-                                <a href="index.html" class="text-pink-600 hover:text-pink-800 px-3 py-2 text-sm font-medium">Home</a>
-                                <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium">Donate</a>
-                            </div>
-                            <div class="-mr-2 flex items-center md:hidden">
-                                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-pink-600 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-            <!-- Mobile menu -->
-            <div class="hidden md:hidden" id="mobile-menu">
-                <div class="pt-2 pb-3 space-y-1">
-                    <!-- Removed Home, What We Do, Our Team, Contact, and Adopt links -->
-                    <a href="index.html" class="bg-pink-50 text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Back to Home</a>
-                    <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white block px-3 py-2 rounded-md text-base font-medium">Donate</a>
-                </div>
-            </div>
-        </nav>
-    <!-- Paw print pattern now repeats across the whole page using CSS background -->
-        <div class="container mx-auto px-4 py-12 relative z-10">
-            <!-- Removed duplicate Donate and Back to Home buttons -->
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-pink-600 drop-shadow-lg tracking-tight">Cats for Adoption</h1>
-            <p class="mb-8 text-lg text-gray-700">Meet our wonderful cats looking for their forever homes. Check back soon for updates!</p>
-            <div class="grid md:grid-cols-3 gap-10">
-                <!-- Example cat card -->
-                <div class="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col items-center p-8 border border-pink-100 hover:scale-105 transition-transform duration-300">
-                    <img src="https://cdn.whiskershealth.org/whiskershealth/web/cat_placeholder_1.jpg" alt="Whiskers Cat" class="w-40 h-40 object-cover rounded-full mb-4 shadow-lg border-4 border-pink-200">
-                    <h2 class="text-2xl font-bold mb-2 text-pink-600">Milo</h2>
-                    <p class="text-pink-500 font-semibold mb-2">Tabby • 2 years</p>
-                    <p class="text-gray-700 mb-4">Milo is a playful and affectionate tabby who loves cuddles and chasing toys. He gets along well with other cats and is looking for a loving home.</p>
-                    <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full font-bold transition duration-300 shadow">Enquire</a>
-                </div>
-                <div class="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col items-center p-8 border border-pink-100 hover:scale-105 transition-transform duration-300">
-                    <img src="https://cdn.whiskershealth.org/whiskershealth/web/cat_placeholder_2.jpg" alt="Whiskers Cat" class="w-40 h-40 object-cover rounded-full mb-4 shadow-lg border-4 border-pink-200">
-                    <h2 class="text-2xl font-bold mb-2 text-pink-600">Luna</h2>
-                    <p class="text-pink-500 font-semibold mb-2">Siamese • 1 year</p>
-                    <p class="text-gray-700 mb-4">Luna is a curious Siamese with striking blue eyes. She enjoys exploring and is very gentle with children. Perfect for a family environment.</p>
-                    <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full font-bold transition duration-300 shadow">Enquire</a>
-                </div>
-                <div class="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col items-center p-8 border border-pink-100 hover:scale-105 transition-transform duration-300">
-                    <img src="https://cdn.whiskershealth.org/whiskershealth/web/cat_placeholder_3.jpg" alt="Whiskers Cat" class="w-40 h-40 object-cover rounded-full mb-4 shadow-lg border-4 border-pink-200">
-                    <h2 class="text-2xl font-bold mb-2 text-pink-600">Simba</h2>
-                    <p class="text-pink-500 font-semibold mb-2">Maine Coon • 3 years</p>
-                    <p class="text-gray-700 mb-4">Simba is a majestic Maine Coon with a gentle temperament. He loves lounging in sunny spots and is very sociable with people and pets.</p>
-                    <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full font-bold transition duration-300 shadow">Enquire</a>
-                </div>
-                <div class="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col items-center p-8 border border-pink-100 hover:scale-105 transition-transform duration-300">
-                    <img src="https://cdn.whiskershealth.org/whiskershealth/web/cat_placeholder_4.jpg" alt="Whiskers Cat" class="w-40 h-40 object-cover rounded-full mb-4 shadow-lg border-4 border-pink-200">
-                    <h2 class="text-2xl font-bold mb-2 text-pink-600">Cleo</h2>
-                    <p class="text-pink-500 font-semibold mb-2">British Shorthair • 4 years</p>
-                    <p class="text-gray-700 mb-4">Cleo is a calm and affectionate British Shorthair. She enjoys quiet environments and is ideal for someone seeking a gentle companion.</p>
-                    <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full font-bold transition duration-300 shadow">Enquire</a>
-                </div>
-                <div class="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col items-center p-8 border border-pink-100 hover:scale-105 transition-transform duration-300">
-                    <img src="https://cdn.whiskershealth.org/whiskershealth/web/cat_placeholder_5.jpg" alt="Whiskers Cat" class="w-40 h-40 object-cover rounded-full mb-4 shadow-lg border-4 border-pink-200">
-                    <h2 class="text-2xl font-bold mb-2 text-pink-600">Willow</h2>
-                    <p class="text-pink-500 font-semibold mb-2">Persian • 5 years</p>
-                    <p class="text-gray-700 mb-4">Willow is a sweet Persian cat who loves being pampered. She is quiet, gentle, and enjoys being brushed and held.</p>
-                    <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full font-bold transition duration-300 shadow">Enquire</a>
-                </div>
-                <div class="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col items-center p-8 border border-pink-100 hover:scale-105 transition-transform duration-300">
-                    <img src="https://cdn.whiskershealth.org/whiskershealth/web/cat_placeholder_6.jpg" alt="Whiskers Cat" class="w-40 h-40 object-cover rounded-full mb-4 shadow-lg border-4 border-pink-200">
-                    <h2 class="text-2xl font-bold mb-2 text-pink-600">Oscar</h2>
-                    <p class="text-pink-500 font-semibold mb-2">Bengal • 2 years</p>
-                    <p class="text-gray-700 mb-4">Oscar is an energetic Bengal who loves to climb and play. He is very intelligent and would thrive in an active household.</p>
-                    <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full font-bold transition duration-300 shadow">Enquire</a>
-                </div>
-                <!-- Add more cat cards here -->
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cats for Adoption | Whiskers Health Organisation</title>
+  <meta name="description" content="Meet the cats looking for their forever homes at Whiskers Health Organisation." />
+  <link rel="icon" type="image/png" href="https://whiskershealth.org/_assets/media/95ff71e8cc598e09954894b7da45ca9c.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <style>body{background-image:linear-gradient(rgba(255,255,255,.96),rgba(255,255,255,.96)),url('https://cdn.whiskershealth.org/whiskershealth/web/paws.png');background-repeat:repeat;background-size:220px 220px}</style>
+</head>
+<body class="bg-white text-gray-800">
+  <!-- Nav -->
+  <nav class="bg-white/90 backdrop-blur sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <a href="index.html" class="flex items-center gap-2">
+          <img class="h-8" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health" />
+          <span class="font-bold text-pink-600">Whiskers Health Organisation</span>
+        </a>
+        <div class="hidden md:flex items-center gap-3">
+          <a href="index.html" class="text-sm text-pink-600 hover:text-pink-700">Home</a>
+          <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white px-3 py-2 rounded-md text-sm flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a>
         </div>
-        <div class="flex flex-row flex-wrap gap-4 justify-center items-center mt-10">
-            <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
-                <span class="mr-2"><i data-feather="heart"></i></span>Donate
-            </a>
-            <a href="index.html" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
-                <span class="mr-2"><i data-feather="arrow-left"></i></span>Back to Home
-            </a>
+        <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-pink-600 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-4 pb-3 space-y-1">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium bg-pink-50 text-pink-600">Home</a>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" class="block px-3 py-2 rounded-md text-base font-medium bg-pink-600 text-white flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="relative z-10">
+    <!-- Hero -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+      <div class="grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-extrabold text-pink-600 tracking-tight">Find your new best friend</h1>
+          <p class="mt-4 text-lg text-gray-700 max-w-2xl">Every cat here has a story and a lot of love to give. Read their profiles, then click below to apply. No right or wrong answers, just honest ones so we can make the best match.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="application.html" class="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-3 rounded-xl font-semibold shadow focus:outline-none focus:ring-2 focus:ring-pink-400 flex items-center gap-2"><i data-feather="heart" class="w-4 h-4"></i> Apply to adopt</a>
+            <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-3 rounded-xl font-semibold shadow flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a>
+          </div>
         </div>
-        <!-- Footer copied from index.html -->
-        <footer class="bg-gray-900 text-white py-12 mt-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid md:grid-cols-4 gap-8">
-                    <div>
-                        <a href="index.html" class="flex items-center">
-                            <img class="h-20 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_W_Transparent.png" alt="Whiskers Health Organisation">
-                            <span class="ml-2 text-xl font-bold text-white block">
-                                Whiskers<br>
-                                Health<br>
-                                Organisation
-                            </span>
-                        </a>
-                        <p class="mt-4 text-gray-400">
-                            Where every paw matters and every tail tells a story.
-                        </p>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                        <ul class="space-y-2">
-                            <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                            <li><a href="#about" class="text-gray-400 hover:text-white">About Us</a></li>
-                            <li><a href="#services" class="text-gray-400 hover:text-white">Our Services</a></li>
-                            <li><a href="#team" class="text-gray-400 hover:text-white">Meet the Team</a></li>
-                            <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Get Involved</h3>
-                        <ul class="space-y-2">
-                            <li><a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="text-gray-400 hover:text-white">Donate</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Volunteer</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Foster</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Adopt</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Partner With Us</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
-                        <div class="flex space-x-4 mb-4">
-                            <a href="#" class="text-gray-400 hover:text-white">
-                                <i data-feather="facebook" class="w-5 h-5"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white">
-                                <i data-feather="twitter" class="w-5 h-5"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white">
-                                <i data-feather="instagram" class="w-5 h-5"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white">
-                                <i data-feather="youtube" class="w-5 h-5"></i>
-                            </a>
-                        </div>
-                        <p class="text-gray-400">
-                            Subscribe to our newsletter for updates and stories.
-                        </p>
-                        <form action="https://a7e01b85.sibforms.com/serve/MUIFANP6n1EkwAKLOji4w-ZtgDEL42z2LNnSR6dwxHtUuaDgfUDibcfnpCIkhArHdT_DfxgnQwGGhwYD9xRisHZ2Tu2HHky8gesyg9f3jMzjZUJ6w-FVA_C9BEtBgmJC9kzuDkWpMSDqzlk_Ar4iR5nWnZhV6ciybDQr9ItxtpNBTMXoGTphVqs7FF84Fq4CZbty2dRek3MktVWF" method="POST" class="mt-4 flex">
-                            <input type="email" name="EMAIL" placeholder="Your email" required class="px-4 py-2 rounded-l-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
-                            <input type="hidden" name="locale" value="en">
-                            <input type="hidden" name="html_type" value="simple">
-                            <button type="submit" class="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-r-md">
-                                <i data-feather="send" class="w-4 h-4"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm">
-                        © 2025 Whiskers Health Organisation. All rights reserved. Registered Charity in England & Wales (No. 1212966)
-                    </p>
-                    <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-                        <a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
-                        <a href="cookie-policy.html" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
-                    </div>
-                </div>
+        <div class="bg-white/70 rounded-2xl border border-pink-100 shadow p-5">
+          <h2 class="text-lg font-semibold text-pink-600 mb-3">Quick filters</h2>
+          <div class="grid sm:grid-cols-3 gap-3 text-sm">
+            <select id="filter-age" class="rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option value="">Age</option><option>Kitten</option><option>Young</option><option>Adult</option><option>Senior</option></select>
+            <select id="filter-temper" class="rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option value="">Temperament</option><option>Calm</option><option>Playful</option><option>Shy</option><option>Confident</option></select>
+            <select id="filter-needs" class="rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500"><option value="">Special needs</option><option>Yes</option><option>No</option></select>
+          </div>
+          <div class="mt-3 flex gap-3 text-sm">
+            <input id="search" type="search" placeholder="Search by name or breed" class="flex-1 rounded-xl border-gray-300 focus:ring-pink-500 focus:border-pink-500" />
+            <button id="clearFilters" class="px-3 py-2 rounded-xl border hover:bg-gray-50">Clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid -->
+    <section id="cats" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!--
+        INSTRUCTIONS: To add more cats for adoption, copy and paste the <article class="catcard ..."> block below for each new cat.
+        - Update the data-name, data-age, data-temper, and data-needs attributes for filtering.
+        - Update the image src, alt text, cat name, breed, age, description, and tags.
+        - Use the 'py-1' class on tag <span> elements for consistent vertical padding.
+        - Each cat card should be placed inside the <div id="cards"> container.
+        - Example below:
+          <article class="catcard ..." data-name="NewCat" data-age="Kitten" data-temper="Playful" data-needs="No">
+            <img src="..." alt="NewCat" class="w-full h-56 object-cover" />
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-2xl font-bold text-pink-600">NewCat</h3>
+              <p class="text-pink-500 font-semibold">Breed • Age</p>
+              <p class="text-gray-700 mt-3 line-clamp-3">Short description.</p>
+              <div class="mt-5 flex gap-2 flex-wrap text-xs">
+                <span class="px-2 py-1 rounded-full bg-pink-50 text-pink-700 border border-pink-100">Kitten</span>
+                <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">Playful</span>
+                <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">No special needs</span>
+              </div>
+              <div class="mt-6 flex gap-3">
+                <a href="cats/newcat.html" class="flex-1 text-center border border-pink-200 text-pink-600 hover:bg-pink-50 px-4 py-2 rounded-full font-semibold">Cat story</a>
+              </div>
             </div>
-        </footer>
-        <script>
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', function() {
-                if (mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.remove('hidden');
-                } else {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
+          </article>
+      -->
+      <div id="cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Example cards (replace with CMS/JSON later) -->
+        <article class="catcard bg-white rounded-xl shadow-xl overflow-hidden border border-pink-100 flex flex-col" data-name="Milo" data-age="Young" data-temper="Playful" data-needs="No">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" alt="Tabby cat - Milo" class="w-full h-56 object-cover bg-gray-100" />
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-2xl font-bold text-pink-600">Milo</h3>
+            <p class="text-pink-500 font-semibold">Tabby • 2 years</p>
+            <p class="text-gray-700 mt-3 line-clamp-3">Playful cuddlebug who loves wand toys and sunny naps. Good with other cats.</p>
+            <div class="mt-5 flex gap-2 flex-wrap text-xs">
+              <span class="px-2 py-1 rounded-full bg-pink-50 text-pink-700 border border-pink-100">Young</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">Playful</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">No special </span>
+            </div>
+            <div class="mt-6 flex gap-3">
+              <a href="cats/milo.html" class="flex-1 text-center border border-pink-200 text-pink-600 hover:bg-pink-50 px-4 py-2 rounded-full font-semibold">Cat story</a>
+            </div>
+          </div>
+        </article>
 
-            // Hide mobile menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
+        <article class="catcard bg-white rounded-xl shadow-xl overflow-hidden border border-pink-100 flex flex-col" data-name="Luna" data-age="Young" data-temper="Calm" data-needs="No">
+          <img src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&w=400&h=225&fit=crop" alt="Siamese cat - Luna" class="w-full h-56 object-cover bg-gray-100" />
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-2xl font-bold text-pink-600">Luna</h3>
+            <p class="text-pink-500 font-semibold">Siamese • 1 year</p>
+            <p class="text-gray-700 mt-3 line-clamp-3">Gentle explorer with bright blue eyes. Lovely with calm children.</p>
+            <div class="mt-5 flex gap-2 flex-wrap text-xs">
+              <span class="px-2 py-1 rounded-full bg-pink-50 text-pink-700 border border-pink-100">Young</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">Calm</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">No special needs</span>
+            </div>
+            <div class="mt-6 flex gap-3">
+              <a href="cats/luna.html" class="flex-1 text-center border border-pink-200 text-pink-600 hover:bg-pink-50 px-4 py-2 rounded-full font-semibold">Cat story</a>
+            </div>
+          </div>
+        </article>
 
-            // Hide mobile menu on scroll
-            window.addEventListener('scroll', function() {
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        </script>
-            <script src="https://cmp.osano.com/M6zSnfQL9p/a5bf3bb7-3ed3-4730-b1ab-86b5d75e299c/osano.js"></script>
-        </body>
-    </html>
+        <article class="catcard bg-white rounded-xl shadow-xl overflow-hidden border border-pink-100 flex flex-col" data-name="Simba" data-age="Adult" data-temper="Calm" data-needs="No">
+          <img src="https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?auto=compress&w=400&h=225&fit=crop" alt="Maine coon cat - Simba" class="w-full h-56 object-cover bg-gray-100" />
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-2xl font-bold text-pink-600">Simba</h3>
+            <p class="text-pink-500 font-semibold">Maine Coon • 3 years</p>
+            <p class="text-gray-700 mt-3 line-clamp-3">Laid-back fluff king who enjoys chats and windowsills. Sociable with people.</p>
+            <div class="mt-5 flex gap-2 flex-wrap text-xs">
+              <span class="px-2 py-1 rounded-full bg-pink-50 text-pink-700 border border-pink-100">Adult</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">Calm</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">No special needs</span>
+            </div>
+            <div class="mt-6 flex gap-3">
+              <a href="cats/simba.html" class="flex-1 text-center border border-pink-200 text-pink-600 hover:bg-pink-50 px-4 py-2 rounded-full font-semibold">Cat story</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="catcard bg-white rounded-xl shadow-xl overflow-hidden border border-pink-100 flex flex-col" data-name="Cleo" data-age="Adult" data-temper="Shy" data-needs="No">
+          <img src="https://images.pexels.com/photos/127028/pexels-photo-127028.jpeg?auto=compress&w=400&h=225&fit=crop" alt="British shorthair cat - Cleo" class="w-full h-56 object-cover bg-gray-100" />
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-2xl font-bold text-pink-600">Cleo</h3>
+            <p class="text-pink-500 font-semibold">British Shorthair • 4 years</p>
+            <p class="text-gray-700 mt-3 line-clamp-3">Quiet soul who blossoms in calm homes. A gentle, trusting companion.</p>
+            <div class="mt-5 flex gap-2 flex-wrap text-xs">
+              <span class="px-2 py-1 rounded-full bg-pink-50 text-pink-700 border border-pink-100">Adult</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">Shy</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">No special needs</span>
+            </div>
+            <div class="mt-6 flex gap-3">
+              <a href="cats/cleo.html" class="flex-1 text-center border border-pink-200 text-pink-600 hover:bg-pink-50 px-4 py-2 rounded-full font-semibold">Cat story</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="catcard bg-white rounded-xl shadow-xl overflow-hidden border border-pink-100 flex flex-col" data-name="Willow" data-age="Senior" data-temper="Calm" data-needs="Yes">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Turkish_Van_Cat.jpg" alt="Persian cat - Willow" class="w-full h-56 object-cover bg-gray-100" />
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-2xl font-bold text-pink-600">Willow</h3>
+            <p class="text-pink-500 font-semibold">Persian • 5 years</p>
+            <p class="text-gray-700 mt-3 line-clamp-3">Soft-hearted lap fan who adores brushes. May need gentle eye care.</p>
+            <div class="mt-5 flex gap-2 flex-wrap text-xs">
+              <span class="px-2 py-1 rounded-full bg-pink-50 text-pink-700 border border-pink-100">Senior</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">Calm</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">Special needs</span>
+            </div>
+            <div class="mt-6 flex gap-3">
+              <a href="cats/willow.html" class="flex-1 text-center border border-pink-200 text-pink-600 hover:bg-pink-50 px-4 py-2 rounded-full font-semibold">Cat story</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="catcard bg-white rounded-xl shadow-xl overflow-hidden border border-pink-100 flex flex-col" data-name="Oscar" data-age="Young" data-temper="Confident" data-needs="No">
+          <img src="https://images.pexels.com/photos/320014/pexels-photo-320014.jpeg?auto=compress&w=400&h=225&fit=crop" alt="Gentle senior cat - Oscar" class="w-full h-56 object-cover bg-gray-100" />
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-2xl font-bold text-pink-600">Oscar</h3>
+            <p class="text-pink-500 font-semibold">Bengal • 2 years</p>
+            <p class="text-gray-700 mt-3 line-clamp-3">Clever climber who loves enrichment. Ideal for active homes.</p>
+            <div class="mt-5 flex gap-2 flex-wrap text-xs">
+              <span class="px-2 py-1 rounded-full bg-pink-50 text-pink-700 border border-pink-100">Young</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">Confident</span>
+              <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-700">No special needs</span>
+            </div>
+            <div class="mt-6 flex gap-3">
+              <a href="cats/oscar.html" class="flex-1 text-center border border-pink-200 text-pink-600 hover:bg-pink-50 px-4 py-2 rounded-full font-semibold">Cat story</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Empty state -->
+      <div id="emptyState" class="hidden text-center text-gray-600 mt-10">
+        <p>No cats match your filters right now. Try clearing filters or check back soon 💛</p>
+      </div>
+    </section>
+
+    <!-- CTA banner -->
+    <section class="bg-gradient-to-r from-pink-50 to-white border-y border-pink-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-center gap-6">
+        <img src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health" class="h-14 opacity-80" />
+        <div class="flex-1">
+          <h3 class="text-xl font-semibold text-pink-600">Ready to apply?</h3>
+          <p class="text-gray-700">Complete our friendly form and we’ll be in touch to chat through the next steps.</p>
+        </div>
+        <div class="flex gap-4">
+          <a href="application.html" class="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-3 rounded-xl font-semibold shadow flex items-center gap-2"><i data-feather="heart" class="w-4 h-4"></i> Apply to adopt</a>
+          <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-3 rounded-xl font-semibold shadow flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <a href="index.html" class="flex items-center">
+            <img class="h-20 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_W_Transparent.png" alt="Whiskers Health Organisation" />
+            <span class="ml-2 text-xl font-bold text-white block">Whiskers<br />Health<br />Organisation</span>
+          </a>
+          <p class="mt-4 text-gray-400">Where every paw matters and every tail tells a story.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white">About Us</a></li>
+            <li><a href="#services" class="text-gray-400 hover:text-white">Our Services</a></li>
+            <li><a href="#team" class="text-gray-400 hover:text-white">Meet the Team</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Get Involved</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white flex items-center gap-2"><i data-feather="award" class="w-4 h-4"></i> Volunteer</a></li>
+            <li><a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="text-gray-400 hover:text-white flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white flex items-center gap-2"><i data-feather="heart" class="w-4 h-4"></i> Adopt</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Partner With Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+          <div class="flex space-x-4 mb-4">
+            <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook" class="w-5 h-5"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter" class="w-5 h-5"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram" class="w-5 h-5"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i data-feather="youtube" class="w-5 h-5"></i></a>
+          </div>
+          <p class="text-gray-400">Subscribe to our newsletter for updates and stories.</p>
+          <form action="https://a7e01b85.sibforms.com/serve/MUIFANP6n1EkwAKLOji4w-ZtgDEL42z2LNnSR6dwxHtUuaDgfUDibcfnpCIkhArHdT_DfxgnQwGGhwYD9xRisHZ2Tu2HHky8gesyg9f3jMzjZUJ6w-FVA_C9BEtBgmJC9kzuDkWpMSDqzlk_Ar4iR5nWnZhV6ciybDQr9ItxtpNBTMXoGTphVqs7FF84Fq4CZbty2dRek3MktVWF" method="POST" class="mt-4 flex">
+            <input type="email" name="EMAIL" placeholder="Your email" required class="px-4 py-2 rounded-l-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full" />
+            <input type="hidden" name="locale" value="en" />
+            <input type="hidden" name="html_type" value="simple" />
+            <button type="submit" class="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-r-md"><i data-feather="send" class="w-4 h-4"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">© 2025 Whiskers Health Organisation. All rights reserved. Registered Charity in England & Wales (No. 1212966)</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+          <a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+          <a href="cookie-policy.html" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    feather.replace();
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn.addEventListener('click',()=> mobileMenu.classList.toggle('hidden'));
+
+    // Simple client-side filtering
+    const cards = Array.from(document.querySelectorAll('.catcard'));
+    const ageSel = document.getElementById('filter-age');
+    const temperSel = document.getElementById('filter-temper');
+    const needsSel = document.getElementById('filter-needs');
+    const search = document.getElementById('search');
+    const empty = document.getElementById('emptyState');
+
+    function applyFilters(){
+      const age = ageSel.value; const temp = temperSel.value; const needs = needsSel.value; const q = search.value.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach(card=>{
+        const okAge = !age || card.dataset.age===age;
+        const okTemp = !temp || card.dataset.temper===temp;
+        const okNeeds = !needs || (needs==='Yes' ? card.dataset.needs==='Yes' : card.dataset.needs==='No');
+        const okQ = !q || card.dataset.name.toLowerCase().includes(q) || card.textContent.toLowerCase().includes(q);
+        const show = okAge && okTemp && okNeeds && okQ;
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      empty.classList.toggle('hidden', visible!==0);
+    }
+
+    document.getElementById('clearFilters').addEventListener('click', ()=>{ ageSel.value=''; temperSel.value=''; needsSel.value=''; search.value=''; applyFilters(); });
+    [ageSel,temperSel,needsSel,search].forEach(el=> el.addEventListener('input', applyFilters));
+
+    // On load, prefilter if hash or query present later
+    applyFilters();
+  </script>
+</body>
+</html>
