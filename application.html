@@ -227,15 +227,20 @@
         <img src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health" class="h-12 mx-auto mb-4" />
         <h3 class="text-2xl font-semibold text-pink-600 mb-2">Thank you for applying! 🐾</h3>
         <p class="text-gray-700">We’ve received your application. A volunteer will be in touch soon. If you need us, email <a class="text-pink-600 underline" href="mailto:adoptions@whiskershealth.org">adoptions@whiskershealth.org</a>.</p>
-        <div class="mt-6"><a href="adopt.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md">Back to Adopt</a></div>
+        <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="index.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md flex items-center gap-2"><i data-feather="arrow-left" class="w-5 h-5"></i> Back to Home</a>
+          <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="inline-block border-2 border-pink-600 text-pink-600 hover:bg-pink-50 px-4 py-2 rounded-md flex items-center gap-2 text-lg font-medium"><i data-feather="gift" class="w-5 h-5"></i> Donate</a>
+        </div>
       </div>
     </div>
 
-    <p class="mt-6 text-xs text-gray-500">Registered Charity in England & Wales (No. 1212966)</p>
+
   </main>
 
   <!-- Footer -->
   <footer class="bg-gray-900 text-white py-12">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script>feather.replace();</script>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-4 gap-8">
         <div>
@@ -390,6 +395,13 @@
       let ok = true;
       const step = STEPS[i];
       const required = step.querySelectorAll('[required]');
+      let errorMsg = step.querySelector('.step-error');
+      if (!errorMsg) {
+        errorMsg = document.createElement('div');
+        errorMsg.className = 'step-error text-pink-600 text-sm mt-2';
+        step.appendChild(errorMsg);
+      }
+      errorMsg.textContent = '';
       required.forEach(input => {
         if (input.type === 'checkbox'){
           const valid = input.checked;
@@ -401,6 +413,9 @@
           else { input.classList.remove('ring-2','ring-pink-400'); }
         }
       });
+      if (!ok) {
+        errorMsg.textContent = 'Please check all required boxes before continuing.';
+      }
       return ok;
     }
 

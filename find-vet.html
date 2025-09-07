@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Find an Emergency Vet | Whiskers Health Organisation</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Leaflet (Map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <style>
+    :root { color-scheme: light; }
+    #map { height: 420px; }
+    .leaflet-container { border-radius: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+    .result:hover { background: #fff7fb; }
+  </style>
+
+  <!-- Google Maps JS with Places -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq91WPpLrUUSKL3Sb4LLyxnyPYjJ1cPLk&libraries=places&v=quarterly"
+    defer
+  ></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Simple header -->
+  <header class="bg-white sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center">
+        <img class="h-8 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health"/>
+        <span class="ml-2 text-lg font-bold text-pink-600">Whiskers Health Organisation</span>
+      </a>
+      <a href="index.html#contact" class="text-sm text-pink-600 hover:text-pink-700">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-pink-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Find an Emergency Vet</h1>
+      <p class="text-gray-600">
+        If an animal is in immediate danger, call your local emergency vet or the RSPCA emergency line
+        <a class="text-pink-600 font-medium" href="tel:03001234999">0300 1234 999</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Search + Map -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2 space-y-4">
+        <div class="bg-white p-4 rounded-2xl shadow">
+          <form id="searchForm" class="flex flex-col sm:flex-row gap-3">
+            <input id="query" type="text" inputmode="search" placeholder="Postcode, town or address (e.g., SW1A 1AA or Leeds)"
+                   class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+            <div class="flex gap-3">
+              <button type="submit"
+                      class="px-4 py-3 rounded-lg bg-pink-600 text-white hover:bg-pink-700 font-medium">
+                Search
+              </button>
+              <button id="geoBtn" type="button"
+                      class="px-4 py-3 rounded-lg border border-gray-300 hover:bg-gray-50 font-medium flex items-center gap-2">
+                <i data-feather="navigation" class="w-4 h-4"></i> Use my location
+              </button>
+            </div>
+          </form>
+          <p class="text-xs text-gray-500 mt-2">Tip: enable location for fastest results.</p>
+        </div>
+
+        <div id="map" class="w-full"></div>
+        <p id="status" class="text-sm text-gray-500"></p>
+        <p class="text-[10px] text-gray-400 mt-2">Places data © Google.</p>
+      </div>
+
+      <!-- Results -->
+      <aside class="space-y-4">
+        <div class="bg-white p-4 rounded-2xl shadow">
+          <h2 class="text-lg font-semibold text-gray-800 mb-2">Nearby emergency vets</h2>
+          <div id="results" class="divide-y divide-gray-100"></div>
+          <p class="text-[10px] text-gray-400 mt-2">Powered by Google.</p>
+        </div>
+        <div class="bg-pink-600 text-white p-4 rounded-2xl">
+          <p class="font-semibold">Emergency contacts (UK)</p>
+          <ul class="mt-2 space-y-1 text-pink-50">
+            <li>RSPCA (24/7): <a class="underline" href="tel:03001234999">0300 1234 999</a></li>
+            <li>Animal Poison Line: <a class="underline" href="tel:01202509000">01202 509 000</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer mini -->
+  <footer class="bg-gray-900 text-white py-12 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <a href="#" class="flex items-center">
+            <img class="h-20 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_W_Transparent.png" alt="Whiskers Health Organisation">
+            <span class="ml-2 text-xl font-bold text-white block">
+              Whiskers<br>
+              Health<br>
+              Organisation
+            </span>
+          </a>
+          <p class="mt-4 text-gray-400">Where every paw matters and every tail tells a story.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white">About Us</a></li>
+            <li><a href="#services" class="text-gray-400 hover:text-white">Our Services</a></li>
+            <li><a href="#team" class="text-gray-400 hover:text-white">Meet the Team</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Get Involved</h3>
+          <ul class="space-y-2">
+            <li><a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="text-gray-400 hover:text-white">Donate</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Volunteer</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Foster</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Adopt</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Partner With Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+          <div class="flex space-x-4 mb-4">
+            <a href="https://facebook.com/whiskershealth" class="text-gray-400 hover:text-white" aria-label="Facebook" target="_blank" rel="noopener"><i data-feather="facebook" class="w-5 h-5"></i></a>
+            <a href="https://twitter.com/whiskershealth" class="text-gray-400 hover:text-white" aria-label="Twitter" target="_blank" rel="noopener"><i data-feather="twitter" class="w-5 h-5"></i></a>
+            <a href="https://instagram.com/whiskershealth" class="text-gray-400 hover:text-white" aria-label="Instagram" target="_blank" rel="noopener"><i data-feather="instagram" class="w-5 h-5"></i></a>
+            <a href="https://youtube.com/@whiskershealth" class="text-gray-400 hover:text-white" aria-label="YouTube" target="_blank" rel="noopener"><i data-feather="youtube" class="w-5 h-5"></i></a>
+            <a href="https://linkedin.com/company/whiskershealth" class="text-gray-400 hover:text-white" aria-label="LinkedIn" target="_blank" rel="noopener"><i data-feather="linkedin" class="w-5 h-5"></i></a>
+          </div>
+          <p class="text-gray-400">Subscribe to our newsletter for updates and stories.</p>
+          <form action="https://a7e01b85.sibforms.com/serve/MUIFAPhrEDQ6n-IWDYKD_kz3QJs8lN5aJGjagBRzomxgzHb3v0hTD5vTwx9qp4er87U6JmFbYQK6JDp6EmIkIzT0l5fnNWnvE77t-ViO7ZF55TTuH7ZoLztxloy63I1KyryPjQgzfw-hoUeMEo3x3RV-UYZT5eKM2HgDL0TRjL1pGXWF7zyL-XRhC7jQcT2jSKcYKawz1sgc4YOb" method="POST" class="mt-4 flex">
+            <input type="email" name="EMAIL" placeholder="Your email" required class="px-4 py-2 rounded-l-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
+            <input type="hidden" name="locale" value="en">
+            <input type="hidden" name="html_type" value="simple">
+            <button type="submit" class="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-r-md"></button>
+          </form>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">© 2025 Whiskers Health Organisation. All rights reserved. Registered Charity in England and Wales, No 1212966</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+          <a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+          <a href="cookie-policy.html" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    feather.replace();
+
+    // Leaflet map setup
+    const map = L.map('map', { zoomControl: true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const markers = L.layerGroup().addTo(map);
+    map.setView([54.8, -4.6], 5); // UK default
+
+    const statusEl = document.getElementById('status');
+    const resultsEl = document.getElementById('results');
+
+    function setStatus(msg, isError = false) {
+      statusEl.textContent = msg || '';
+      statusEl.className = 'text-sm ' + (isError ? 'text-red-600' : 'text-gray-500');
+    }
+
+    // Distance
+    function distanceKm(a, b) {
+      const toRad = d => d * Math.PI/180;
+      const R = 6371;
+      const dLat = toRad(b.lat - a.lat);
+      const dLon = toRad(b.lon - a.lon);
+      const lat1 = toRad(a.lat);
+      const lat2 = toRad(b.lat);
+      const x = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;
+      return 2 * R * Math.asin(Math.sqrt(x));
+    }
+
+    // Directions links
+    function directionsLink(lat, lon, name = 'Veterinary Clinic') {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        return `https://maps.apple.com/?daddr=${encodeURIComponent(lat + ',' + lon)}&dirflg=d&q=${encodeURIComponent(name)}`;
+      }
+      return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(lat + ',' + lon)}&travelmode=driving`;
+    }
+
+    // Wait for Google library
+    function waitForGoogle(msTimeout = 12000) {
+      return new Promise((resolve, reject) => {
+        const start = Date.now();
+        (function check() {
+          if (window.google && google.maps && google.maps.places) return resolve();
+          if (Date.now() - start > msTimeout) return reject(new Error('Google library failed to load.'));
+          setTimeout(check, 80);
+        })();
+      });
+    }
+
+    // Places service holder (reused)
+    let placesService = null;
+    function getPlacesService() {
+      if (!placesService) {
+        const div = document.createElement('div'); // unattached container
+        placesService = new google.maps.places.PlacesService(div);
+      }
+      return placesService;
+    }
+
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+    // ---------- Google-backed search ----------
+    async function geocodeGoogle(query) {
+      await waitForGoogle();
+      const geocoder = new google.maps.Geocoder();
+      return new Promise((resolve, reject) => {
+        geocoder.geocode(
+          { address: query, componentRestrictions: { country: 'GB' } },
+          (results, status) => {
+            if (status !== 'OK' || !results?.length) return reject(new Error('Place not found'));
+            const loc = results[0].geometry.location;
+            resolve({ lat: loc.lat(), lon: loc.lng(), display: results[0].formatted_address });
+          }
+        );
+      });
+    }
+
+    async function findVets(lat, lon, radiusMeters = 20000) {
+      await waitForGoogle();
+      const service = getPlacesService();
+
+      // 1) Nearby search for official type 'veterinary_care'
+      const nearby = await new Promise((resolve, reject) => {
+        service.nearbySearch(
+          {
+            location: new google.maps.LatLng(lat, lon),
+            radius: radiusMeters,
+            type: ['veterinary_care'],
+            // keyword: 'emergency' // uncomment to bias toward emergency clinics
+          },
+          (results, status) => {
+            if (status !== google.maps.places.PlacesServiceStatus.OK || !results) {
+              return reject(new Error('Nearby search failed: ' + status));
+            }
+            resolve(results);
+          }
+        );
+      });
+
+      // 2) Enrich with Place Details to get phone + website
+      const fields = [
+        'name',
+        'formatted_address',
+        'geometry',
+        'international_phone_number',
+        'formatted_phone_number',
+        'website',
+        'opening_hours',
+        'place_id'
+      ];
+
+      const enriched = [];
+      for (const r of nearby) {
+        const details = await new Promise((resolve) => {
+          service.getDetails({ placeId: r.place_id, fields }, (place, status) => {
+            if (status !== google.maps.places.PlacesServiceStatus.OK || !place) return resolve(null);
+            resolve(place);
+          });
+        });
+        // be gentle with rate limits
+        await sleep(120);
+
+        const loc = (details?.geometry || r.geometry)?.location;
+        if (!loc) continue;
+        const phone = details?.international_phone_number || details?.formatted_phone_number || '';
+        enriched.push({
+          id: details?.place_id || r.place_id,
+          name: details?.name || r.name || 'Veterinary Clinic',
+          lat: loc.lat(), lon: loc.lng(),
+          addr: details?.formatted_address || r.vicinity || '',
+          phone,
+          website: details?.website || ''
+          // openNow: details?.opening_hours?.isOpen() ?? null
+        });
+      }
+
+      // Sort by distance
+      const center = { lat, lon };
+      enriched.sort((a, b) => distanceKm(center, a) - distanceKm(center, b));
+      return enriched;
+    }
+    // ------------------------------------------
+
+    // Render list + markers (unchanged UI)
+    function telHref(number) {
+      if (!number) return '';
+      const cleaned = number.replace(/\(0\)/g, '').replace(/[^\d+]/g, '');
+      const e164 = cleaned.startsWith('0') ? `+44${cleaned.slice(1)}` : cleaned;
+      return `tel:${e164}`;
+    }
+
+    function renderPlaces(center, places) {
+      markers.clearLayers();
+      resultsEl.innerHTML = '';
+      if (!places.length) {
+        resultsEl.innerHTML = `<p class="text-gray-500">No emergency vets found nearby. Try a different area.</p>`;
+        return;
+      }
+
+      const bounds = [];
+      places.forEach((p) => {
+        const popupHtml = `
+          <strong>${p.name || 'Veterinary Clinic'}</strong><br/>
+          ${p.addr || ''}${p.phone ? `<br/>☎ <a href="${telHref(p.phone)}">${p.phone}</a>` : ''}${p.website ? `<br/>🌐 <a href="${p.website}" target="_blank" rel="noopener">Website</a>` : ''}
+        `;
+        const m = L.marker([p.lat, p.lon]).addTo(markers).bindPopup(popupHtml);
+        bounds.push([p.lat, p.lon]);
+
+        const dist = distanceKm(center, p).toFixed(1);
+        const row = document.createElement('div');
+        row.className = 'result py-3';
+        row.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="font-medium text-gray-800">${p.name || 'Veterinary Clinic'}</p>
+              <p class="text-sm text-gray-600">${p.addr || 'Address unavailable'}</p>
+              ${p.phone ? `<p class="text-sm mt-1"><a class="text-pink-600 hover:text-pink-700" href="${telHref(p.phone)}">${p.phone}</a></p>` : ''}
+              ${p.website ? `<p class="text-sm mt-1"><a class="text-pink-600 hover:text-pink-700" href="${p.website}" target="_blank" rel="noopener">Website</a></p>` : ''}
+            </div>
+            <div class="text-right shrink-0">
+              <p class="text-xs text-gray-500">${dist} km</p>
+              <a class="inline-block mt-2 text-sm px-3 py-1 rounded-lg bg-pink-600 text-white hover:bg-pink-700"
+                 href="${directionsLink(p.lat, p.lon, p.name)}" target="_blank" rel="noopener">Directions</a>
+            </div>
+          </div>
+        `;
+        row.addEventListener('mouseenter', () => m.openPopup());
+        row.addEventListener('mouseleave', () => m.closePopup());
+        row.addEventListener('click', () => {
+          map.setView([p.lat, p.lon], 15);
+          m.openPopup();
+        });
+        resultsEl.appendChild(row);
+      });
+
+      if (bounds.length) {
+        try { map.fitBounds(bounds, { padding: [20,20] }); }
+        catch { map.setView([center.lat, center.lon], 12); }
+      }
+    }
+
+    // Run search by coords
+    async function runSearchByCoords(lat, lon, label = '') {
+      try {
+        setStatus('Searching nearby emergency vets…');
+        const places = await findVets(lat, lon);
+        setStatus(places.length ? `Found ${places.length} clinics ${label ? 'near ' + label : 'near you'}.`
+                                : 'No clinics found here. Try a larger town or a different area.');
+        renderPlaces({lat, lon}, places.slice(0, 30));
+      } catch (err) {
+        console.error(err);
+        setStatus('We had trouble looking that up. Please try again in a moment.', true);
+      }
+    }
+
+    // Search form
+    document.getElementById('searchForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const q = document.getElementById('query').value.trim();
+      if (!q) return;
+      setStatus('Finding location…');
+      try {
+        const where = await geocodeGoogle(q);
+        map.setView([where.lat, where.lon], 13);
+        await runSearchByCoords(where.lat, where.lon, where.display);
+      } catch (err) {
+        console.error(err);
+        setStatus('Place not found. Try a UK town or postcode.', true);
+      }
+    });
+
+    // Geolocation
+    document.getElementById('geoBtn').addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        setStatus('Geolocation is not supported by your browser.', true);
+        return;
+      }
+      setStatus('Getting your location…');
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          const { latitude, longitude } = pos.coords;
+          map.setView([latitude, longitude], 13);
+          await runSearchByCoords(latitude, longitude);
+        },
+        (err) => {
+          console.error(err);
+          setStatus('Could not get your location. You can search by town or postcode.', true);
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      );
+    });
+  </script>
+</body>
+</html>

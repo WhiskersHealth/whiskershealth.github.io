@@ -10,7 +10,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
     <style>
         
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -467,6 +466,8 @@
                             <h3 class="text-xl font-semibold text-gray-800 mb-4">Send us a message</h3>
                             <form action="https://api.web3forms.com/submit" method="POST">
                                 <input type="hidden" name="access_key" value="c275303c-d9db-4a5b-9c09-2d2be15d0161">
+                                <!-- Honeypot field -->
+                                <input type="text" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none!important">
                                 <div class="mb-4">
                                     <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Name</label>
                                     <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
@@ -479,6 +480,8 @@
                                     <label for="message" class="block text-gray-700 text-sm font-medium mb-2">Message</label>
                                     <textarea id="message" name="message" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"></textarea>
                                 </div>
+                                <!-- Google reCAPTCHA v2 checkbox -->
+                                <div class="g-recaptcha mb-4" data-sitekey="6LeUcBMpAAAAAKwQwQwQwQwQwQwQwQwQwQwQwQwQw"></div>
                                 <button type="submit" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-md text-sm font-medium">Send Message</button>
                             </form>
                         </div>
@@ -617,7 +620,7 @@
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow">
                     <h4 class="text-lg font-semibold mb-4">Find Your Nearest Emergency Clinic</h4>
-                    <a href="#" class="text-pink-600 hover:text-pink-700 font-medium inline-flex items-center">
+                    <a href="find-vet.html" class="text-pink-600 hover:text-pink-700 font-medium inline-flex items-center">
                         Search Now
                         <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
                     </a>
@@ -709,6 +712,36 @@
     </footer>
 
     <script>
+        // Web3Forms honeypot check for spam
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.querySelector('form[action="https://api.web3forms.com/submit"]');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    // Honeypot check
+                    if (form.website && form.website.value) {
+                        e.preventDefault();
+                        return false;
+                    }
+                    // Intercept submit to handle redirect
+                    e.preventDefault();
+                    var formData = new FormData(form);
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(function(response) {
+                        if (response.ok) {
+                            window.location.href = 'thank-you.html';
+                        } else {
+                            alert('There was a problem sending your message. Please try again or email hello@whiskershealth.org.');
+                        }
+                    })
+                    .catch(function() {
+                        alert('Network error. Please try again or email hello@whiskershealth.org.');
+                    });
+                });
+            }
+        });
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -746,6 +779,7 @@
         feather.replace();
     </script>
     <script src="https://cmp.osano.com/M6zSnfQL9p/a5bf3bb7-3ed3-4730-b1ab-86b5d75e299c/osano.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 
 </html>
