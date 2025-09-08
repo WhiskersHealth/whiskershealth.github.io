@@ -37,7 +37,12 @@
         <img class="h-8 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health"/>
         <span class="ml-2 text-lg font-bold text-pink-600">Whiskers Health Organisation</span>
       </a>
-      <a href="index.html#contact" class="text-sm text-pink-600 hover:text-pink-700">Contact</a>
+      <nav class="flex items-center gap-6">
+        <a href="index.html" class="text-sm text-pink-600 hover:text-pink-700 font-medium">Home</a>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="text-sm text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg font-medium flex items-center gap-2">
+          <i data-feather="gift" class="w-4 h-4"></i> Donate
+        </a>
+      </nav>
     </div>
   </header>
 
@@ -81,17 +86,17 @@
 
       <!-- Results -->
       <aside class="space-y-4">
-        <div class="bg-white p-4 rounded-2xl shadow">
-          <h2 class="text-lg font-semibold text-gray-800 mb-2">Nearby emergency vets</h2>
-          <div id="results" class="divide-y divide-gray-100"></div>
-          <p class="text-[10px] text-gray-400 mt-2">Powered by Google.</p>
-        </div>
         <div class="bg-pink-600 text-white p-4 rounded-2xl">
           <p class="font-semibold">Emergency contacts (UK)</p>
           <ul class="mt-2 space-y-1 text-pink-50">
             <li>RSPCA (24/7): <a class="underline" href="tel:03001234999">0300 1234 999</a></li>
             <li>Animal Poison Line: <a class="underline" href="tel:01202509000">01202 509 000</a></li>
           </ul>
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow">
+          <h2 class="text-lg font-semibold text-gray-800 mb-2">Nearby emergency vets</h2>
+          <div id="results" class="divide-y divide-gray-100"></div>
+          <p class="text-[10px] text-gray-400 mt-2">Powered by Google.</p>
         </div>
       </aside>
     </div>
@@ -244,67 +249,37 @@
 
     async function findVets(lat, lon, radiusMeters = 20000) {
       await waitForGoogle();
-      const service = getPlacesService();
-
-      // 1) Nearby search for official type 'veterinary_care'
-      const nearby = await new Promise((resolve, reject) => {
-        service.nearbySearch(
-          {
-            location: new google.maps.LatLng(lat, lon),
-            radius: radiusMeters,
-            type: ['veterinary_care'],
-            // keyword: 'emergency' // uncomment to bias toward emergency clinics
-          },
-          (results, status) => {
-            if (status !== google.maps.places.PlacesServiceStatus.OK || !results) {
-              return reject(new Error('Nearby search failed: ' + status));
-            }
-            resolve(results);
+      return new Promise((resolve, reject) => {
+        const service = getPlacesService();
+        service.nearbySearch({
+          location: new google.maps.LatLng(lat, lon),
+          radius: 10000, // reduced radius for more local results
+          type: 'veterinary_care',
+          keyword: 'emergency' // prioritize emergency clinics
+        }, async (results, status) => {
+          if (status !== google.maps.places.PlacesServiceStatus.OK || !results?.length) {
+            return resolve([]);
           }
-        );
-      });
-
-      // 2) Enrich with Place Details to get phone + website
-      const fields = [
-        'name',
-        'formatted_address',
-        'geometry',
-        'international_phone_number',
-        'formatted_phone_number',
-        'website',
-        'opening_hours',
-        'place_id'
-      ];
-
-      const enriched = [];
-      for (const r of nearby) {
-        const details = await new Promise((resolve) => {
-          service.getDetails({ placeId: r.place_id, fields }, (place, status) => {
-            if (status !== google.maps.places.PlacesServiceStatus.OK || !place) return resolve(null);
-            resolve(place);
+          // Fetch details for each place (phone, website)
+          const getDetailsPromises = results.map(p => {
+            return new Promise((res) => {
+              service.getDetails({ placeId: p.place_id, fields: ['formatted_phone_number', 'international_phone_number', 'website'] }, (details, detStatus) => {
+                res({
+                  id: p.place_id,
+                  name: p.name || 'Veterinary Clinic',
+                  lat: p.geometry?.location?.lat(),
+                  lon: p.geometry?.location?.lng(),
+                  addr: p.vicinity || '',
+                  phone: details?.international_phone_number || details?.formatted_phone_number || '',
+                  website: details?.website || ''
+                });
+              });
+            });
           });
+          const list = (await Promise.all(getDetailsPromises)).filter(p => p.lat && p.lon);
+          resolve(list);
         });
-        // be gentle with rate limits
-        await sleep(120);
-
-        const loc = (details?.geometry || r.geometry)?.location;
-        if (!loc) continue;
-        const phone = details?.international_phone_number || details?.formatted_phone_number || '';
-        enriched.push({
-          id: details?.place_id || r.place_id,
-          name: details?.name || r.name || 'Veterinary Clinic',
-          lat: loc.lat(), lon: loc.lng(),
-          addr: details?.formatted_address || r.vicinity || '',
-          phone,
-          website: details?.website || ''
-          // openNow: details?.opening_hours?.isOpen() ?? null
-        });
-      }
-
-      // Sort by distance
-      const center = { lat, lon };
-      enriched.sort((a, b) => distanceKm(center, a) - distanceKm(center, b));
-      return enriched;
+      });
     }
     // ------------------------------------------
 
@@ -370,7 +345,13 @@
     async function runSearchByCoords(lat, lon, label = '') {
       try {
         setStatus('Searching nearby emergency vets…');
-        const places = await findVets(lat, lon);
+        let places = await findVets(lat, lon);
+        // Sort by distance from center
+        places = places.sort((a, b) => {
+          const da = distanceKm({lat, lon}, a);
+          const db = distanceKm({lat, lon}, b);
+          return da - db;
+        });
         setStatus(places.length ? `Found ${places.length} clinics ${label ? 'near ' + label : 'near you'}.`
                                 : 'No clinics found here. Try a larger town or a different area.');
         renderPlaces({lat, lon}, places.slice(0, 30));
