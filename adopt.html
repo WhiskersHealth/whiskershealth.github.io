@@ -1,54 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cats for Adoption | Whiskers Health Organisation</title>
-  <meta name="description" content="Meet the cats looking for their forever homes at Whiskers Health Organisation." />
   <!-- Social sharing meta tags -->
+  <meta name="description" content="Meet the cats looking for their forever homes at Whiskers Health Organisation." />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.whiskershealth.org/whiskershealth/apps/icon-1024.png" />
+  <meta name="apple-mobile-web-app-title" content="Whiskers Health" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta property="og:title" content="Cats for Adoption | Whiskers Health Organisation" />
   <meta property="og:description" content="Meet the cats looking for their forever homes at Whiskers Health Organisation." />
   <meta property="og:image" content="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" />
   <meta property="og:url" content="https://whiskershealth.org/adopt.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Whiskers Health Organisation" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cats for Adoption | Whiskers Health Organisation" />
   <meta name="twitter:description" content="Meet the cats looking for their forever homes at Whiskers Health Organisation." />
   <meta name="twitter:image" content="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" />
   <meta name="twitter:site" content="@WhiskersHealth" />
+  <meta property="og:site_name" content="Whiskers Health Organisation" />
   <link rel="icon" type="image/png" href="https://whiskershealth.org/_assets/media/95ff71e8cc598e09954894b7da45ca9c.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
   <style>body{background-image:linear-gradient(rgba(255,255,255,.96),rgba(255,255,255,.96)),url('https://cdn.whiskershealth.org/whiskershealth/web/paws.png');background-repeat:repeat;background-size:220px 220px}</style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(253,230,233,1) 0%, rgba(255,255,255,1) 100%);
+    }
+    .paw-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 30C55 30 60 35 60 40C60 45 55 50 50 50C45 50 40 45 40 40C40 35 45 30 50 30' fill='%23f8d7da' opacity='0.4'/%3E%3C/svg%3E");
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-800">
-  <!-- Nav -->
-  <nav class="bg-white/90 backdrop-blur sticky top-0 z-50 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16 items-center">
-        <a href="index.html" class="flex items-center gap-2">
-          <img class="h-8" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health" />
-          <span class="font-bold text-pink-600">Whiskers Health Organisation</span>
+  <style>
+    /* Flip card styles */
+    .card {
+      perspective: 1000px;
+      width: 100%;
+      max-width: 340px;
+      height: 36rem;
+    }
+    /* Standardize team member image heights */
+    .card-front img {
+      height: 23.8rem;
+      object-fit: cover;
+      width: 100%;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-bottom: 2rem; /* Extra padding for text */
+    }
+    .card-front {
+      background: #f9fafb;
+    }
+    .card-back {
+      background: #fbcfe8;
+      color: #111;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+  </style>
+  <style>
+        html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+</style>
+
+<!-- Navigation -->
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex items-center">
+        <a href="index.html" class="flex-shrink-0 flex items-center">
+          <img class="h-8 w-auto" src="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" alt="Whiskers Health Organisation">
+          <span class="ml-2 text-xl font-bold text-pink-600">Whiskers Health Organisation</span>
         </a>
-        <div class="hidden md:flex items-center gap-3">
-          <a href="index.html" class="text-sm text-pink-600 hover:text-pink-700">Home</a>
-          <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white px-3 py-2 rounded-md text-sm flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a>
+      </div>
+      <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+        <a href="index.html" class="text-pink-600 hover:text-pink-800 px-2 py-2 text-sm font-medium">Home</a>
+        <a href="#about" class="text-gray-700 hover:text-pink-600 px-2 py-2 text-sm font-medium">About</a>
+        <a href="#services" class="text-gray-700 hover:text-pink-600 px-2 py-2 text-sm font-medium whitespace-nowrap">What We Do</a>
+        <a href="#team" class="text-gray-700 hover:text-pink-600 px-2 py-2 text-sm font-medium whitespace-nowrap">Our Team</a>
+        <a href="#contact" class="text-gray-700 hover:text-pink-600 px-2 py-2 text-sm font-medium">Contact</a>
+        <div class="flex items-center gap-4">
+          <a href="adopt.html" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2"><i data-feather="heart" class="w-4 h-4"></i> Adopt</a>
+          <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a>
         </div>
-        <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-pink-600 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </div>
+      <div class="-mr-2 flex items-center md:hidden">
+        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-pink-600 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+          <i data-feather="menu"></i>
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden">
-      <div class="px-4 pb-3 space-y-1">
-        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium bg-pink-50 text-pink-600">Home</a>
-        <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" class="block px-3 py-2 rounded-md text-base font-medium bg-pink-600 text-white flex items-center gap-2"><i data-feather="gift" class="w-4 h-4"></i> Donate</a>
-      </div>
-    </div>
-  </nav>
+  </div>
 
-  <main class="relative z-10">
+  <!-- Mobile menu -->
+  <div class="hidden md:hidden" id="mobile-menu">
+    <div class="pt-2 pb-3 space-y-1">
+      <a href="index.html" class="bg-pink-50 text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+      <a href="#about" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">About</a>
+      <a href="#services" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">What We Do</a>
+      <a href="#team" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Our Team</a>
+      <a href="#contact" class="text-gray-700 hover:bg-pink-50 hover:text-pink-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+      <a href="adopt.html" class="bg-pink-600 hover:bg-pink-700 text-white block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2"><i data-feather="heart" class="w-4 h-4 mr-1"></i> Adopt</a>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=T2QVEFAXMEQC6" target="_blank" rel="noopener" class="bg-pink-600 hover:bg-pink-700 text-white block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2"><i data-feather="gift" class="w-4 h-4 mr-2"></i> Donate</a>
+    </div>
+  </div>
+</nav>
+
+<main class="relative z-10">
     <!-- Hero -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
       <div class="grid lg:grid-cols-2 gap-8 items-center">
@@ -80,6 +175,7 @@
       <!--
         INSTRUCTIONS: To add more cats for adoption, copy and paste the <article class="catcard ..."> block below for each new cat.
         - Update the data-name, data-age, data-temper, and data-needs attributes for filtering.
+  </style>
         - Update the image src, alt text, cat name, breed, age, description, and tags.
         - Use the 'py-1' class on tag <span> elements for consistent vertical padding.
         - Each cat card should be placed inside the <div id="cards"> container.
@@ -288,9 +384,11 @@
 
   <script>
     feather.replace();
-    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileBtn = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    mobileBtn.addEventListener('click',()=> mobileMenu.classList.toggle('hidden'));
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click',()=> mobileMenu.classList.toggle('hidden'));
+    }
 
     // Simple client-side filtering
     const cards = Array.from(document.querySelectorAll('.catcard'));
