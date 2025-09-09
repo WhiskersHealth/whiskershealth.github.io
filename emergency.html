@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Whiskers Health Symptom Checker</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Check your pet's symptoms and get urgent advice. Fast triage for dogs, cats, rabbits, and birds. Emergency vet links and first aid guidance." />
+  <!-- Social sharing meta tags -->
+  <meta property="og:title" content="Whiskers Health Symptom Checker" />
+  <meta property="og:description" content="Check your pet's symptoms and get urgent advice. Fast triage for dogs, cats, rabbits, and birds. Emergency vet links and first aid guidance." />
+  <meta property="og:image" content="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" />
+  <meta property="og:url" content="https://whiskershealth.org/emergency.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Whiskers Health Organisation" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Whiskers Health Symptom Checker" />
+  <meta name="twitter:description" content="Check your pet's symptoms and get urgent advice. Fast triage for dogs, cats, rabbits, and birds. Emergency vet links and first aid guidance." />
+  <meta name="twitter:image" content="https://cdn.whiskershealth.org/whiskershealth/logos/logo_full_B_Transparent.png" />
+  <meta name="twitter:site" content="@WhiskersHealth" />
+  <link rel="icon" type="image/png" href="https://whiskershealth.org/_assets/media/95ff71e8cc598e09954894b7da45ca9c.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Nunito', Arial, sans-serif; background: #f8fafc; color: #284155; margin: 0; }
+    .container { max-width: 680px; margin: 2rem auto; background: #fff; border-radius: 22px; box-shadow: 0 8px 36px rgba(135,188,204,.13); padding: 2.2rem 2rem 2.8rem 2rem; }
+    h1 { color: #229ba7; letter-spacing: 1px; margin-bottom: .5rem;}
+    .subtitle { color: #8eb7d2; font-size: 1.1rem; margin-bottom: 1.7rem;}
+    .step { margin-bottom: 2rem; }
+    .species-select { display: flex; gap: 1.2rem; flex-wrap: wrap; margin: .7rem 0 2rem 0; }
+    .species-btn { display: flex; flex-direction: column; align-items: center; border: 2px solid #e1e8f6; border-radius: 12px; padding: 1rem 1.3rem; background: #eafafd; color: #229ba7; font-size:1.08em; cursor: pointer; transition: border .2s, box-shadow .2s;}
+    .species-btn.selected, .species-btn:hover { border: 2px solid #ffd866; background: #fff9e9; color: #fbb937; box-shadow: 0 3px 15px #ffeee3;}
+    .species-btn span { font-size: 2.2rem; margin-bottom: .5rem;}
+    .symptom-select { width:100%; border-radius:8px; padding:.85rem; border: 1.2px solid #8edfd6; font-size:1.02em; margin-top:.6rem }
+    .red-flags { display: flex; flex-direction: column; gap: .5rem; background:#fffdfa; border-radius: 10px; border: 1.5px solid #ffd866; padding: .9rem 1.3rem; margin: 1.1rem 0 1.6rem 0;}
+    .red-flags label{ color: #be5b0e;}
+    button[type=submit], .restart-btn { margin-top: 1.7rem; padding: .98rem 2.1rem; background: #fbb937; color: #fff; border: none; border-radius: 7px; font-size: 1.13em; font-weight: bold; cursor: pointer; transition:.2s;}
+    button[type=submit]:hover, .restart-btn:hover {background:#229ba7;}
+    .result-card {background: #eafafd; border-left: 7px solid #229ba7; padding: 1.65rem 1.1rem 1.2rem 1.3rem; margin: 2rem 0 2rem 0; border-radius: 12px;}
+    .result-card.emergency {background:#fff1f3; border-left: 7px solid #c81e1e;}
+    .result-card.urgent {background:#fffbe8; border-left:7px solid #fbb937;}
+    .result-title { font-weight: bold; font-size: 1.19rem; margin-bottom: .67rem; color:#229ba7;}
+    .disclaimer { color: #6c8797; font-size: .97em; margin: 2.2rem 0 0 0;}
+    .quick-links { margin-top: 1.2rem; }
+    .quick-links a {color:#229ba7; text-decoration:underline;}
+    .whiskers-link {color:#fbb937; font-weight:bold;}
+    @media (max-width: 650px) {
+        .container{padding:.8rem;}
+        .species-btn{width:85px;font-size:.97em;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav style="background:#229ba7;color:#fff;padding:1rem 0;text-align:center;">
+    <a href="index.html" style="color:#fff;text-decoration:none;font-weight:bold;font-size:1.2rem;">Whiskers Health Organisation</a>
+    <span style="margin:0 1.5rem;">|</span>
+    <a href="find-vet.html" style="color:#fff;text-decoration:none;">Find Emergency Vet</a>
+    <span style="margin:0 1.5rem;">|</span>
+    <a href="adopt.html" style="color:#fff;text-decoration:none;">Adopt</a>
+  </nav>
+  <div class="container" role="main">
+    <h1>Symptom Checker</h1>
+    <div class="subtitle">Where every paw (and wing) matters — is your companion feeling unwell? Let's check together.</div>
+    <form id="checker-form">
+      <!-- Step 1: Select Pet Type -->
+      <div class="step" id="step1">
+        <div><b>1. Who needs help?</b></div>
+        <div class="species-select">
+          <div class="species-btn" data-pet="dog" tabindex="0"><span>🐶</span>Dog</div>
+          <div class="species-btn" data-pet="cat" tabindex="0"><span>🐱</span>Cat</div>
+          <div class="species-btn" data-pet="rabbit" tabindex="0"><span>🐰</span>Rabbit</div>
+          <div class="species-btn" data-pet="bird" tabindex="0"><span>🐦</span>Bird</div>
+        </div>
+      </div>
+
+      <!-- Step 2: Select Symptom (dynamically filled) -->
+      <div class="step" id="step2" style="display:none">
+        <label for="symptom-select"><b>2. Please select a symptom:</b></label>
+        <select id="symptom-select" class="symptom-select" required></select>
+      </div>
+
+      <!-- Step 3: Red Flag symptoms -->
+      <div class="step red-flags" id="redFlags" style="display:none">
+        <b>3. Emergency check (tick if any apply):</b>
+        <label><input type="checkbox" name="rf-breathing"/> Severe difficulty breathing, blue/grey tongue</label>
+        <label><input type="checkbox" name="rf-collapse"/> Sudden collapse, unresponsive, fitting</label>
+        <label><input type="checkbox" name="rf-severeBleed"/> Heavy bleeding (won't stop in 5 min)</label>
+        <label><input type="checkbox" name="rf-trauma"/> Road accident, high fall, large predator attack</label>
+        <label><input type="checkbox" name="rf-strain"/> Straining & unable to pee/poo</label>
+        <label><input type="checkbox" name="rf-poison"/> Swallowed medication/toxin/household chemical</label>
+      </div>
+
+      <button type="submit" id="submitBtn" style="display:none">Get Care Advice</button>
+    </form>
+
+    <!-- Results section -->
+    <div id="result" class="result-card" style="display:none"></div>
+    <button class="restart-btn" onclick="window.location.reload();" style="display:none" id="restartBtn">Start Again</button>
+    <div class="quick-links">
+      <a href="https://www.whiskershealth.org/resources/emergency-vet-uk" target="_blank" class="whiskers-link">Find a 24/7 Emergency Vet</a> |
+      <a href="https://www.whiskershealth.org/resources/first-aid" target="_blank" class="whiskers-link">Pet First Aid Guides</a>
+    </div>
+    <div class="disclaimer">
+      <b>Gentle Reminder:</b> This checker provides support & signposting, not medical diagnosis. If in doubt—always contact your vet.<br>
+      🐾 Want to help more pets? <a href="https://www.whiskershealth.org/support-us" target="_blank" class="whiskers-link">Support our mission!</a>
+  </div>
+  <!-- Footer -->
+  <footer style="background:#284155;color:#fff;padding:2rem 0;text-align:center;margin-top:2rem;border-radius:0 0 22px 22px;">
+    <div style="margin-bottom:1rem;">
+      <a href="privacy-policy.html" style="color:#fff;text-decoration:underline;margin:0 1rem;">Privacy Policy</a>
+      <a href="terms-of-service.html" style="color:#fff;text-decoration:underline;margin:0 1rem;">Terms of Service</a>
+      <a href="cookie-policy.html" style="color:#fff;text-decoration:underline;margin:0 1rem;">Cookie Policy</a>
+    </div>
+    <div style="font-size:.95em;color:#bbb;">© 2025 Whiskers Health Organisation. All rights reserved.</div>
+  </footer>
+    </div>
+  </div>
+
+  <script>
+    // Pet symptoms by type (original, expanded!)
+    const symptoms = {
+      dog: [
+        {id: 'breathing', label: 'Breathing trouble'},
+        {id: 'collapse', label: 'Collapse, fainting'},
+        {id: 'bleeding', label: 'Severe wound or blood loss'},
+        {id: 'bloat', label: 'Bloated, hard, painful belly'},
+        {id: 'vomit', label: 'Frequent vomiting'},
+        {id: 'diarrhea', label: 'Persistent diarrhea'},
+        {id: 'not-urinating', label: 'Straining or not urinating'},
+        {id: 'seizure', label: 'Fitting, twitching'},
+        {id: 'pain', label: 'Obvious pain or distress'},
+        {id: 'injury', label: 'Accident/fall/injury'},
+        {id: 'choking', label: 'Choking, pawing at mouth'},
+        {id: 'heatstroke', label: 'Overheated, panting heavily'},
+        {id: 'poison', label: 'Possible poisoning/toxin'},
+        {id: 'loss-appetite', label: 'Not eating/drinking 24h+'},
+        {id: 'eye', label: 'Serious eye problem/injury'},
+        {id: 'other', label: 'Something else...'},
+      ],
+      cat: [
+        {id: 'breathing', label: 'Hard to breathe/open-mouth'},
+        {id: 'collapse', label: 'Collapse/unresponsive'},
+        {id: 'bleeding', label: 'Major bleeding/wound'},
+        {id: 'not-urinating', label: 'Strained, unable to urinate'},
+        {id: 'vomit', label: 'Vomiting often'},
+        {id: 'diarrhea', label: 'Continuous diarrhea'},
+        {id: 'seizure', label: 'Fits/twitching'},
+        {id: 'pain', label: 'Pain, crying out, hiding'},
+        {id: 'injury', label: 'Accident/bite/injury'},
+        {id: 'choking', label: 'Choking, pawing mouth'},
+        {id: 'heatstroke', label: 'Hot, open-mouth panting'},
+        {id: 'poison', label: 'Poisoning risk'},
+        {id: 'loss-appetite', label: 'Not eating >24h'},
+        {id: 'eye', label: 'Eye swelling/blindness'},
+        {id: 'other', label: 'Other problem...'}
+      ],
+      rabbit: [
+        {id: 'breathing', label: 'Rapid/difficult breathing'},
+        {id: 'collapse', label: 'Very limp, not moving'},
+        {id: 'bleeding', label: 'Heavy bleeding'},
+        {id: 'not-eating', label: 'Not eating in 8+ hours'},
+        {id: 'diarrhea', label: 'Runny/soft poo'},
+        {id: 'fit', label: 'Fits/loss of balance'},
+        {id: 'gut-stasis', label: 'Swollen/painful tummy'},
+        {id: 'injury', label: 'Drop/fall/wound'},
+        {id: 'heatstroke', label: 'Overheating'},
+        {id: 'poison', label: 'Eaten toxic plant/food'},
+        {id: 'other', label: 'Other issues'}
+      ],
+      bird: [
+        {id: 'breathing', label: 'Breathing trouble, tail-bob'},
+        {id: 'collapse', label: 'Fluffed up, weak/quiet/collapsed'},
+        {id: 'bleeding', label: 'Serious bleeding (wing, mouth, vent)'},
+        {id: 'not-eating', label: 'Not eating 6+ hours'},
+        {id: 'diarrhea', label: 'Frequent watery poo'},
+        {id: 'seizure', label: 'Fits/tremors'},
+        {id: 'egg-bound', label: 'Female straining, no eggs passed'},
+        {id: 'prolapse', label: 'Tissue protruding at vent'},
+        {id: 'injury', label: 'Trauma—broken wing/leg'},
+        {id: 'poison', label: 'Inhaled/Eaten toxin'},
+        {id: 'other', label: 'Other concern'}
+      ]
+    };
+
+    // Unique Whiskers Health advice snippets
+    const adviceData = {
+      dog: {
+        breathing: {level:'emergency', msg:"With breathing problems, every moment counts. Keep your friend calm and get to your vet or animal hospital <b>now</b>."},
+        collapse: {level:'emergency', msg:"A sudden collapse can signal a life-threatening emergency. Transport gently to a vet immediately."},
+        bleeding: {level:'emergency', msg:"Apply firm pressure. If wound is severe or won’t stop bleeding within 5 minutes, seek vet help straight away."},
+        bloat: {level:'emergency', msg:"A swollen, painful tummy may be bloat. This is rapidly fatal—get to your emergency vet without delay."},
+        "not-urinating": {level:'emergency', msg:"Straining or unable to urinate is a veterinary emergency—especially in male dogs."},
+        vomit: {level:'urgent', msg:"If vomiting is ongoing or your dog is dull, book a vet check today. Offer plenty of water."},
+        diarrhea: {level:'moderate', msg:"Persistent diarrhea is uncomfortable but not always urgent unless there is blood, weakness, or no improvement in 24h."},
+        seizure: {level:'urgent', msg:"If actively fitting, move objects away and keep safe. Vet advice is needed if seizure lasts over 2 minutes or repeats."},
+        pain: {level:'urgent', msg:"Pain signals something is wrong. See a vet promptly—especially if it comes on suddenly or is severe."},
+        injury: {level:'urgent', msg:"Monitor for bleeding, swelling, or limping. If concerned, contact your vet for first aid advice."},
+        choking: {level:'emergency', msg:"If your dog can’t breathe, try to clear the mouth only if safe. Rush to your vet immediately."},
+        heatstroke: {level:'emergency', msg:"Cool with damp (not cold) towels, move to shade, and go to your vet promptly."},
+        poison: {level:'emergency', msg:"Call your vet or poison hotline now—give as much detail as possible and do not induce vomiting unless told."},
+        "loss-appetite": {level:'moderate', msg:"Not eating for over 24 hours? Book a vet check, especially in younger/older dogs or if lethargic."},
+        eye: {level:'urgent', msg:"For eye injuries, prevent rubbing and visit the vet quickly for proper assessment."},
+        other: {level:'moderate', msg:"It’s always safest to check with your vet, especially if things get worse or your companion seems distressed."}
+      },
+      cat: {
+        breathing: {level:'emergency', msg:"Labored breathing is an emergency. Keep your cat calm and cool, and get to a vet immediately."},
+        collapse: {level:'emergency', msg:"Collapse or unresponsiveness is life-threatening. Transport gently to a vet now."},
+        bleeding: {level:'emergency', msg:"Apply gentle pressure. If bleeding is severe or doesn't stop, seek urgent vet care."},
+        "not-urinating": {level:'emergency', msg:"Straining or unable to urinate is a veterinary emergency—especially in male cats."},
+        vomit: {level:'urgent', msg:"Frequent vomiting or inability to keep water down needs a vet check today."},
+        diarrhea: {level:'moderate', msg:"Continuous diarrhea is uncomfortable but not always urgent unless there is blood, weakness, or no improvement in 24h."},
+        seizure: {level:'urgent', msg:"If fitting, keep safe and call your vet if it lasts over 2 minutes or repeats."},
+        pain: {level:'urgent', msg:"Pain, hiding, or crying out means your cat needs a vet assessment soon."},
+        injury: {level:'urgent', msg:"Monitor for bleeding, swelling, or limping. If concerned, contact your vet for first aid advice."},
+        choking: {level:'emergency', msg:"If your cat can't breathe, try to clear the mouth only if safe. Rush to your vet immediately."},
+        heatstroke: {level:'emergency', msg:"Move to a cool area, wet fur with cool water, and see your vet straight away."},
+        poison: {level:'emergency', msg:"Call your vet or poison hotline now—give as much detail as possible and do not induce vomiting unless told."},
+        "loss-appetite": {level:'moderate', msg:"Not eating for over 24 hours? Book a vet check, especially in older cats or if lethargic."},
+        eye: {level:'urgent', msg:"For eye injuries, prevent rubbing and visit the vet quickly for proper assessment."},
+        other: {level:'moderate', msg:"It’s always safest to check with your vet, especially if things get worse or your companion seems distressed."}
+      },
+      rabbit: {
+        breathing: {level:'emergency', msg:"Rapid or difficult breathing is always urgent. See a vet as soon as possible."},
+        collapse: {level:'emergency', msg:"Very limp or not moving is an emergency. Get to a vet now."},
+        bleeding: {level:'emergency', msg:"Apply gentle pressure. Heavy bleeding needs urgent vet care."},
+        "not-eating": {level:'emergency', msg:"Not eating in 8+ hours is a veterinary emergency for rabbits."},
+        diarrhea: {level:'moderate', msg:"Runny or soft poo is uncomfortable but not always urgent unless there is blood, weakness, or no improvement in 24h."},
+        fit: {level:'urgent', msg:"Fits or loss of balance need a vet check soon."},
+        "gut-stasis": {level:'emergency', msg:"Swollen or painful tummy may be gut stasis. Get to a vet immediately."},
+        injury: {level:'urgent', msg:"Monitor for bleeding, swelling, or limping. If concerned, contact your vet for first aid advice."},
+        heatstroke: {level:'emergency', msg:"Move to a cool area, offer water, and see your vet urgently."},
+        poison: {level:'emergency', msg:"Call your vet or poison hotline now—give as much detail as possible and do not induce vomiting unless told."},
+        other: {level:'moderate', msg:"It’s always safest to check with your vet, especially if things get worse or your companion seems distressed."}
+      },
+      bird: {
+        breathing: {level:'emergency', msg:"Breathing trouble or tail-bobbing is an emergency. Keep warm and quiet, and see a vet ASAP."},
+        collapse: {level:'emergency', msg:"Fluffed up, weak, or collapsed birds need urgent vet care."},
+        bleeding: {level:'emergency', msg:"Apply gentle pressure. Serious bleeding needs urgent vet care."},
+        "not-eating": {level:'emergency', msg:"Not eating for 6+ hours is an emergency for birds."},
+        diarrhea: {level:'moderate', msg:"Frequent watery poo is uncomfortable but not always urgent unless there is blood, weakness, or no improvement in 24h."},
+        seizure: {level:'urgent', msg:"Fits or tremors need a vet check soon."},
+        "egg-bound": {level:'emergency', msg:"Female straining and no eggs passed is an emergency. Get to a vet immediately."},
+        prolapse: {level:'emergency', msg:"Tissue protruding at vent is an emergency. Keep moist and see a vet."},
+        injury: {level:'urgent', msg:"Monitor for bleeding, swelling, or limping. If concerned, contact your vet for first aid advice."},
+        poison: {level:'emergency', msg:"Call your vet or poison hotline now—give as much detail as possible and do not induce vomiting unless told."},
+        other: {level:'moderate', msg:"It’s always safest to check with your vet, especially if things get worse or your companion seems distressed."}
+      }
+    };
+
+    function getResultClass(level) {
+      if (level === 'emergency') return 'result-card emergency';
+      if (level === 'urgent') return 'result-card urgent';
+      return 'result-card';
+    }
+
+    let petType = null;
+    document.querySelectorAll('.species-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        petType = this.getAttribute('data-pet');
+        document.querySelectorAll('.species-btn').forEach(b=>b.classList.remove('selected'));
+        this.classList.add('selected');
+        document.getElementById('step2').style.display = 'block';
+        buildSymptomOptions(petType);
+        document.getElementById('redFlags').style.display = 'block';
+        document.getElementById('submitBtn').style.display = 'inline-block';
+      });
+    });
+    function buildSymptomOptions(pet) {
+      const select = document.getElementById('symptom-select');
+      select.innerHTML = '';
+      symptoms[pet].forEach(sym => {
+        const option = document.createElement('option');
+        option.value = sym.id;
+        option.innerText = sym.label;
+        select.appendChild(option);
+      });
+    }
+    document.getElementById('checker-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Basic error handling: must select pet and symptom
+      if (!petType) {
+        alert('Please select your pet type.');
+        return;
+      }
+      let sym = document.getElementById('symptom-select').value;
+      if (!sym) {
+        alert('Please select a symptom.');
+        return;
+      }
+      let redFlagged = false;
+      document.querySelectorAll('#redFlags input[type=checkbox]').forEach(cb=>{
+        if(cb.checked) redFlagged = true;
+      });
+      let resultDiv = document.getElementById('result');
+      let restartBtn = document.getElementById('restartBtn');
+      resultDiv.style.display = 'block';
+      restartBtn.style.display = 'inline-block';
+
+      if (redFlagged) {
+        resultDiv.className = 'result-card emergency';
+        resultDiv.innerHTML = `
+          <div class="result-title">EMERGENCY</div>
+          <div>We’re here for you. Please don’t wait—seek veterinary care immediately.<br>
+          <b>Call or visit your nearest vet or animal hospital.</b>
+          <br>For travel tips or local resources, see our <a href="https://www.whiskershealth.org/resources/emergency-vet-uk" target="_blank" class="whiskers-link">Emergency Vet map</a>.</div>`;
+        return;
+      }
+
+      // Custom advice by pet and symptom
+      let adv = (adviceData[petType] && adviceData[petType][sym]) || {level:'moderate',msg:'If you’re worried, just ask your vet or call us for gentle guidance!'};
+      // Result display styling
+      resultDiv.className = getResultClass(adv.level);
+      let triage =
+        adv.level === 'emergency' ? '<span style="color:#c81e1e;font-weight:bold">EMERGENCY:</span> ' :
+        adv.level === 'urgent' ? '<span style="color:#fbb937;font-weight:bold">URGENT:</span> ' :
+        '';
+      resultDiv.innerHTML =
+        `<div class="result-title">${triage}${adviceTitle(sym,petType)}</div>${adv.msg}
+          <br><br>See our <a href="https://www.whiskershealth.org/resources/first-aid" target="_blank" class="whiskers-link">First Aid hub</a> for extra support.`;
+    });
+    function adviceTitle(sym, pet) {
+      let txt = symptoms[pet].find(s=>s.id===sym);
+      return txt ? txt.label : sym.replace('-',' ');
+    }
+  </script>
+</body>
+</html>
