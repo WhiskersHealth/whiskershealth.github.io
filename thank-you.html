@@ -4,15 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You | Whiskers Health Organisation</title>
+    <!-- Social sharing meta tags -->
+    <meta name="description" content="Thank you for supporting Whiskers Health Organisation." />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.whiskershealth.org/whiskershealth/apps/icon-1024.png" />
+    <meta name="apple-mobile-web-app-title" content="Whiskers Health" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta property="og:title" content="Thank You | Whiskers Health Organisation" />
+    <meta property="og:description" content="Thank you for supporting Whiskers Health Organisation." />
+    <meta property="og:image" content="https://cdn.whiskershealth.org/whiskershealth/logos/logo_padding_B_Transparent.png" />
+    <meta property="og:url" content="https://whiskershealth.org/thank-you.html" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Thank You | Whiskers Health Organisation" />
+    <meta name="twitter:description" content="Thank you for supporting Whiskers Health Organisation." />
+    <meta name="twitter:image" content="https://cdn.whiskershealth.org/whiskershealth/logos/logo_padding_B_Transparent.png" />
+    <meta name="twitter:site" content="@whiskershealth" />
+    <meta property="og:site_name" content="Whiskers Health Organisation" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Poppins', sans-serif;
         }
         .hero-gradient {
             background: linear-gradient(135deg, rgba(253,230,233,1) 0%, rgba(255,255,255,1) 100%);
         }
+        .paw-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 30C55 30 60 35 60 40C60 45 55 50 50 50C45 50 40 45 40 40C40 35 45 30 50 30' fill='%23f8d7da' opacity='0.4'/%3E%3C/svg%3E");
+        }
+    </style>
+    <style>
+        /* Flip card styles */
+        .card {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 340px;
+            height: 36rem;
+        }
+        /* Standardize team member image heights */
+        .card-front img {
+            height: 23.8rem;
+            object-fit: cover;
+            width: 100%;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-bottom: 2rem; /* Extra padding for text */
+        }
+        .card-front {
+            background: #f9fafb;
+        }
+        .card-back {
+            background: #fbcfe8;
+            color: #111;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+    </style>
+    <style>
+                html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.max-w-7xl {
+    max-width: 1200px !important;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .card {
+        height: auto;
+        min-height: 32rem;
+        margin-bottom: 2rem;
+    }
+    .card-front img {
+        height: 18rem;
+        object-fit: cover;
+    }
+    .grid.md\:grid-cols-2.lg\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+    }
+    .px-4, .sm\:px-6, .lg\:px-8 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    #team .grid {
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
     </style>
 </head>
 <body class="bg-white text-gray-800">
